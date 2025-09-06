@@ -56,8 +56,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 4
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -127,8 +127,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 222
-        height: 288
+        width: 238
+        height: 302
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: Elementos Interactivos_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 22
-        width: 167
-        height: 254
+        x: 264
+        y: 17
+        width: 183
+        height: 264
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: Elementos Interactivos_2
       rect:
         serializedVersion: 2
-        x: 573
-        y: 145
-        width: 48
-        height: 192
+        x: 568
+        y: 134
+        width: 57
+        height: 203
       alignment: 9
       pivot: {x: 0.5, y: -0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,7 +194,7 @@ TextureImporter:
         x: 485
         y: 0
         width: 224
-        height: 126
+        height: 130
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

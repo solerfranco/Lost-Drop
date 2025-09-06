@@ -9,9 +9,13 @@ public class TrashCan : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+    [SerializeField]
+    private ItemDataSO[] itemDataSO;
+
     public void SpawnItem()
     {
         Item item = Instantiate(itemPrefab, spawnPoint.position, Quaternion.identity);
+        item.Initialize(itemDataSO[Random.Range(0, itemDataSO.Length)]);
 
         item.DisableCollider();
         item.transform.DOLocalMoveX(item.transform.localPosition.x + Random.Range(-3f, 3f), .75f).SetEase(Ease.OutQuad).OnComplete(() =>

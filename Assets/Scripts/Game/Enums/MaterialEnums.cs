@@ -1,3 +1,5 @@
+using Sirenix.OdinInspector;
+
 public enum MaterialRarity
 {
     Comun,
@@ -8,11 +10,11 @@ public enum MaterialRarity
 
 public enum MaterialType
 {
-    Cutting,
-    Piercing,
-    Blunt,
-    Handle,
-    Guard,
-    Sharp,
-    Defensive
+    [LabelText("Cortante", SdfIconType.Gem)] Cutting,
+    [LabelText("Punzante", SdfIconType.Eyedropper)]Piercing,
+    [LabelText("Contundente", SdfIconType.Hammer)]Blunt,
+    [LabelText("Mango")]Handle,
+    [LabelText("Guarda")]Guard,
+    [LabelText("Filoso")]Sharp,
+    [LabelText("Defensivo", SdfIconType.Shield)]Defensive
 }

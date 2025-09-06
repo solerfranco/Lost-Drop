@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ public class Customer : MonoBehaviour
     private Weapon weaponType;
 
     [SerializeField]
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer, lightSpriteRenderer;
 
     [SerializeField]
     private Transform dialogBubble;
@@ -77,6 +78,11 @@ public class Customer : MonoBehaviour
 
     // private DeliveryUI deliveryUI;
 
+    public void Initialize(Sprite sprite)
+    {
+        spriteRenderer.sprite = sprite;
+    }
+
     void Start()
     {
         initialPosition = transform.position;
@@ -85,7 +91,6 @@ public class Customer : MonoBehaviour
 
         // currentPatience = patienceByDay[TimeManager.Instance.CurrentDay];
 
-        RandomizeSprite();
         RandomizeItem();
 
         // deliveryUI = DeliveriesSystem.Instance.CreateDeliveryWidget(currentPatience, weaponType, weight);
@@ -93,18 +98,18 @@ public class Customer : MonoBehaviour
 
     void Update()
     {
-        currentPatience -= Time.deltaTime;
-        if (currentPatience <= 0)
-        {
-            GetComponent<Collider2D>().enabled = false;
-            MoveToPosition(Vector3.right * 15);
-            // queue.customers[0] = null;
-            // queue.MoveTheQueueForward();
-            // deliveryUI.DeleteWidget();
-            currentPatience = 1000;
-            // WinScreen.Instance.WrongDeliveries++;
-            Destroy(gameObject, 5f);
-        }
+        // currentPatience -= Time.deltaTime;
+        // if (currentPatience <= 0)
+        // {
+        //     GetComponent<Collider2D>().enabled = false;
+        //     MoveToPosition(Vector3.right * 15);
+        //     // queue.customers[0] = null;
+        //     // queue.MoveTheQueueForward();
+        //     // deliveryUI.DeleteWidget();
+        //     currentPatience = 1000;
+        //     // WinScreen.Instance.WrongDeliveries++;
+        //     Destroy(gameObject, 5f);
+        // }
 
     }
 
@@ -116,8 +121,15 @@ public class Customer : MonoBehaviour
         spriteRenderer.transform.DOScale(targetScale, 0.3f).SetEase(Ease.OutQuad);
     }
 
-    public void MoveToPosition(Vector2 position, float startingDelay = 0)
+    public void MoveToPosition(Vector2 position, bool goingToCounter, float startingDelay = 0)
     {
+        
+        if (goingToCounter)
+        {
+            isOnCounter = goingToCounter;
+            dialogBubble.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
+        }
+
         DOTween.Kill($"Breathing{GetInstanceID()}");
         Sequence sequence = DOTween.Sequence();
 
@@ -135,28 +147,7 @@ public class Customer : MonoBehaviour
             breathingSequence.Append(transform.DOMoveY(initialPosition.y, baseValue * 8).SetEase(Ease.InOutSine));
             breathingSequence.SetLoops(-1, LoopType.Yoyo);
             breathingSequence.SetId($"Breathing{GetInstanceID()}");
-
-
-            // if (queue.customers[0] == this)
-            // {
-            //     isOnCounter = true;
-            //     dialogBubble.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
-            // }
         };
-    }
-
-    private void RandomizeSprite()
-    {
-        // List<Sprite> customerSprites = queue.GetCustomerSprites();
-
-        // Sprite randomSprite;
-        // do
-        // {
-        //     randomSprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
-        // }
-        // while (customerSprites.Contains(randomSprite)); // keep looping if it's already in the list
-
-        // spriteRenderer.sprite = randomSprite; // assign the valid one
     }
 
     private void RandomizeItem()
@@ -165,70 +156,69 @@ public class Customer : MonoBehaviour
 
         // weaponType = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Length)];
 
-        itemSprite.sprite = weaponSprites[weaponType];
+        // itemSprite.sprite = weaponSprites[weaponType];
 
-        weight = UnityEngine.Random.Range(weightByWeapon[weaponType].MinWeight, weightByWeapon[weaponType].MaxWeight + 1);
+        // weight = UnityEngine.Random.Range(weightByWeapon[weaponType].MinWeight, weightByWeapon[weaponType].MaxWeight + 1);
 
-        weightTMP.text = weight.ToString();
+        // weightTMP.text = weight.ToString();
     }
 
-    // public bool DeliverItem(WeaponAssembly weapon)
-    // {
-    //     bool isRightWeapon = weapon.weaponType == weaponType;
-    //     bool isRightweight = weapon.weight == weight;
+    public bool ReceiveItem(WeaponBlueprint weaponBlueprint)
+    {
+        bool isRightWeapon = weaponBlueprint.Weapon == weaponType;
+        bool isRightweight = weaponBlueprint.Weight == weight;
 
-    //     float goldMultiplier = 1;
+        float goldMultiplier = 1;
 
-    //     // bool isWeaponValid = weapon.weaponType == weaponType && isOnCounter;
-    //     if (isOnCounter)
-    //     {
-    //         weapon.transform.SetParent(transform);
-    //         weapon.transform.position = weaponHoldingTransform.position;
+        if (isOnCounter)
+        {
+            weaponBlueprint.transform.SetParent(transform);
+            weaponBlueprint.transform.position = weaponHoldingTransform.position;
 
-    //         weapon.GetComponentsInChildren<SpriteRenderer>().ToList().ForEach(sprite =>
-    //         {
-    //             sprite.sortingLayerID = spriteRenderer.sortingLayerID;
-    //             sprite.sortingOrder = spriteRenderer.sortingOrder + 1;
-    //         });
+            weaponBlueprint.GetComponentsInChildren<SpriteRenderer>().ToList().ForEach(sprite =>
+            {
+                sprite.sortingLayerID = spriteRenderer.sortingLayerID;
+                sprite.sortingOrder = spriteRenderer.sortingOrder + 1;
+            });
 
-    //         weaponPerformanceIndicator.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
-    //         weightPerformanceIndicator.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            weaponPerformanceIndicator.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+            weightPerformanceIndicator.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
 
-    //         rightWeaponIndicator.gameObject.SetActive(isRightWeapon);
-    //         wrongWeaponIndicator.gameObject.SetActive(!isRightWeapon);
+            // rightWeaponIndicator.gameObject.SetActive(isRightWeapon);
+            // wrongWeaponIndicator.gameObject.SetActive(!isRightWeapon);
 
-    //         rightWeightIndicator.gameObject.SetActive(isRightweight);
-    //         wrongWeightIndicator.gameObject.SetActive(!isRightweight);
+            // rightWeightIndicator.gameObject.SetActive(isRightweight);
+            // wrongWeightIndicator.gameObject.SetActive(!isRightweight);
 
-    //         if (!isRightWeapon)
-    //         {
-    //             goldMultiplier -= 0.5f;
-    //         }
+            if (!isRightWeapon)
+            {
+                goldMultiplier -= 0.5f;
+            }
 
-    //         if (!isRightweight)
-    //         {
-    //             goldMultiplier -= 0.5f;
-    //         }
+            if (!isRightweight)
+            {
+                goldMultiplier -= 0.5f;
+            }
 
-    //         MoveToPosition(Vector3.right * 15, 1);
-    //         queue.customers[0] = null;
-    //         queue.MoveTheQueueForward();
-    //         deliveryUI.DeleteWidget();
-    //         // GoldManager.Instance.AddGold((int)(50 * goldMultiplier));
+            MoveToPosition(Vector3.right * 15, false, 1);
+            
+            // queue.MoveTheQueueForward();
+            // deliveryUI.DeleteWidget();
+            GoldManager.Instance.AddGold((int)(50 * goldMultiplier));
 
-    //         if (!isRightWeapon && !isRightweight)
-    //         {
-    //             // WinScreen.Instance.WrongDeliveries++;
-    //         }
-    //         else
-    //         {
-    //             // WinScreen.Instance.rightDeliveries++;
-    //         }
+            if (!isRightWeapon && !isRightweight)
+            {
+                // WinScreen.Instance.WrongDeliveries++;
+            }
+            else
+            {
+                // WinScreen.Instance.rightDeliveries++;
+            }
 
-    //         currentPatience = 1000;
-    //         Destroy(gameObject, 5f);
-    //     }
+            currentPatience = 1000;
+            Destroy(gameObject, 5f);
+        }
 
-    //     return isOnCounter;
-    // }
+        return isOnCounter;
+    }
 }

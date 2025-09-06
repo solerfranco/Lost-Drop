@@ -11,7 +11,10 @@ public class Item : DraggableElement
     #region Data
 
     private MaterialType materialType;
+    public MaterialType MaterialType => materialType;
+
     private int weight = 0;
+    public int Weight => weight;
     private MaterialRarity materialRarity;
 
     #endregion
@@ -75,11 +78,12 @@ public class Item : DraggableElement
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
-        DOTween.Kill(transform, true);
+        DOTween.Kill(transform);
         velocity = Vector3.zero;
 
         sprite.DOScale(initialScale * 1.3f, 0.5f).SetEase(Ease.OutBack);
         transform.SetParent(null);
+        transform.position = new(transform.position.x, transform.position.y, -5);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
@@ -102,14 +106,23 @@ public class Item : DraggableElement
         targetPos.z = 0;
         transform.position = targetPos;
 
-        //Calculate mouse position and Check if mouse is over a conveyor belt
+        //Calculate mouse position
         Vector2 mouseScreenPos = Pointer.current.position.ReadValue();
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
+        //Move the item to mouse last position to make the dragging feel better
         transform.DOMove(worldPos, 0.25f).SetEase(Ease.OutQuad);
-        // Raycast all colliders at mouse position to find conveyor belt not just one
-        RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(worldPos, Vector2.zero);
 
+        VerifyItemPlacement(worldPos);
+        
+    }
+
+    public void VerifyItemPlacement(Vector3 pointerWorldPosition)
+    {
+        // Raycast all colliders at mouse position to find conveyor belt or Weapon 
+        RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(pointerWorldPosition, Vector2.zero);
+
+        bool droppedOnWrongFragment = false;
         foreach (var hit in raycastHit2Ds)
         {
             if (hit.collider != null)
@@ -118,18 +131,27 @@ public class Item : DraggableElement
                 {
                     conveyor.PlaceItem(transform);
                 }
-                // if (hit.collider.TryGetComponent<WeaponPiece>(out var weaponPiece))
-                // {
-                //     //Try to place the scrap on the weapon piece
-                //     // weaponPiece
-                //     if (weaponPiece.TryPlacePiece(this))
-                //     {
-                //         transform.SetParent(weaponPiece.transform);
-                //         transform.DOLocalMove(Vector3.zero + Vector3.forward * weaponPiece.transform.position.z, 0.25f).SetEase(Ease.OutQuad);
-                //         sprite.DOLocalRotate(Vector3.forward * weaponPiece.transform.rotation.eulerAngles.z, 0.25f).SetEase(Ease.OutQuad);
-                //     }
-                // }
+                if (hit.collider.TryGetComponent<WeaponFragment>(out var weaponPiece))
+                {
+                    if (weaponPiece.CanPlaceItem(this))
+                    {
+                        transform.SetParent(weaponPiece.transform);
+                        transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutQuad);
+                        transform.DOLocalMove(Vector3.zero + Vector3.forward * weaponPiece.transform.position.z, 0.25f).SetEase(Ease.OutQuad);
+                        sprite.DOLocalRotate(Vector3.forward * weaponPiece.transform.rotation.eulerAngles.z, 0.25f).SetEase(Ease.OutQuad);
+                        droppedOnWrongFragment = false;
+                        break;
+                    }
+                    else
+                    {
+                        droppedOnWrongFragment = true;
+                    }
+                }
             }
+        }
+        if (droppedOnWrongFragment)
+        {
+            transform.DOMove(transform.position + Vector3.left * UnityEngine.Random.Range(2f, 4f), 0.25f).SetEase(Ease.OutQuad);
         }
     }
 
@@ -155,17 +177,12 @@ public class Item : DraggableElement
     {
         base.OnPointerEnter(eventData);
         DOTween.Kill(tooltip, true);
-        // tooltip.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack).SetDelay(0.25f);
-        // transform.DOScale(Vector3.one * 1.1f, 0.25f).SetEase(Ease.OutBack);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        if (isBeingDragged) return;
         base.OnPointerExit(eventData);
         DOTween.Kill(tooltip);
-        // tooltip.DOScale(Vector3.zero, 0.15f).SetEase(Ease.InQuad);
-        // transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack);
     }
 
     private Transform darkHoleTransform;
@@ -190,7 +207,8 @@ public class Item : DraggableElement
 
         if (isBeingDragged)
         {
-            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+            worldPos.z = transform.position.z;
 
             transform.position = Vector3.SmoothDamp(transform.position, worldPos, ref velocity, 0.1f);
         }

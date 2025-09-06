@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -8,8 +9,14 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
     protected SpriteRenderer spriteRenderer;
     private Material material;
 
+    protected virtual bool canDisableOutline => true;
+
+    protected bool isMouseOver;
+
+    [FoldoutGroup("Pointer Events")]
     [SerializeField]
     protected UnityEvent onPointerDown, onPointerUp, onPointerEnter, onPointerExit;
+
 
     protected virtual void Awake()
     {
@@ -19,7 +26,7 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
         }
     }
 
-    private void EnableOutline()
+    protected void EnableOutline()
     {
         if (material != null)
         {
@@ -27,9 +34,9 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
         }
     }
 
-    private void DisableOutline()
+    protected void DisableOutline()
     {
-        if (material != null)
+        if (material != null && canDisableOutline)
         {
             material.SetFloat("_OutlineAlpha", 0);
         }
@@ -46,12 +53,14 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        isMouseOver = true;
         onPointerEnter?.Invoke();
         EnableOutline();
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
+        isMouseOver = false;
         onPointerExit?.Invoke();
         DisableOutline();
     }

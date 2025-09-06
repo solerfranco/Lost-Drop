@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   name: Zanahoria
   weight: 10
-  materialType: 0
-  materialRarity: 0
+  materialType: 3
+  materialRarity: 1
   sprite: {fileID: 3152864836816840579, guid: 0a01ebacebe5a9f4dabc9948372ab30e, type: 3}

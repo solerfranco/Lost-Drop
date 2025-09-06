@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-public class LightingManager : MonoBehaviour
+public class LightingController : MonoBehaviour
 {
     [SerializeField] private Color dayLightColor, nightLightColor;
     [SerializeField] private float dayIntensity, nightIntensity;

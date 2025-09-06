@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e0ecb92e1a5a14fa6462dd96309d6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponMaterial
+  spriteRenderer: {fileID: 4240716603395388013}
   onPointerDown:
     m_PersistentCalls:
       m_Calls: []
@@ -60,7 +61,6 @@ MonoBehaviour:
       m_Calls: []
   CanBeDragged: 0
   isBeingDragged: 0
-  spriteRenderer: {fileID: 4240716603395388013}
   sprite: {fileID: 3174086405994519413}
   tooltip: {fileID: 0}
   weightTMP: {fileID: 0}
@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3174086405994519413}
   - component: {fileID: 4240716603395388013}
+  - component: {fileID: 5002331871728873097}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -170,7 +171,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: b775442940048334099988a7e7f7c011, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,3 +204,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5002331871728873097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649210002720229647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AllIn1SpriteShaderAssembly::AllIn1SpriteShader.AllIn1Shader
+  currentShaderType: 3
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
