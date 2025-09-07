@@ -77,8 +77,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 32
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -146,12 +146,12 @@ TextureImporter:
       name: Escudos_0
       rect:
         serializedVersion: 2
-        x: 88
-        y: 613
-        width: 386
-        height: 437
+        x: 59
+        y: 588
+        width: 447
+        height: 481
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Escudos_1
       rect:
         serializedVersion: 2
-        x: 570
-        y: 620
-        width: 436
-        height: 436
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 654
+        y: 595
+        width: 490
+        height: 474
+      alignment: 9
+      pivot: {x: 0.5199746, y: 0.5235986}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: Escudos_2
       rect:
         serializedVersion: 2
-        x: 1088
-        y: 619
-        width: 306
-        height: 439
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1144
+        y: 595
+        width: 349
+        height: 474
+      alignment: 9
+      pivot: {x: 0.51201886, y: 0.5029498}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Escudos_3
       rect:
         serializedVersion: 2
-        x: 1458
-        y: 619
-        width: 434
-        height: 437
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1494
+        y: 573
+        width: 470
+        height: 496
+      alignment: 9
+      pivot: {x: 0.49702486, y: 0.488724}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: Escudos_4
       rect:
         serializedVersion: 2
-        x: 1984
-        y: 624
-        width: 391
-        height: 437
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1964
+        y: 594
+        width: 437
+        height: 475
+      alignment: 9
+      pivot: {x: 0.48400182, y: 0.45290193}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: Escudos_5
       rect:
         serializedVersion: 2
-        x: 2441
-        y: 615
-        width: 323
-        height: 446
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2405
+        y: 568
+        width: 396
+        height: 501
+      alignment: 9
+      pivot: {x: 0.5035308, y: 0.48883653}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: Escudos_6
       rect:
         serializedVersion: 2
-        x: 146
-        y: 0
-        width: 529
-        height: 527
+        x: 343
+        y: 21
+        width: 595
+        height: 566
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -300,12 +300,12 @@ TextureImporter:
       name: Escudos_7
       rect:
         serializedVersion: 2
-        x: 740
-        y: 56
-        width: 395
-        height: 407
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1051
+        y: 24
+        width: 463
+        height: 471
+      alignment: 9
+      pivot: {x: 0.51396585, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -322,12 +322,12 @@ TextureImporter:
       name: Escudos_8
       rect:
         serializedVersion: 2
-        x: 1198
-        y: 39
-        width: 433
-        height: 436
+        x: 1514
+        y: 11
+        width: 476
+        height: 491
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -344,12 +344,12 @@ TextureImporter:
       name: Escudos_9
       rect:
         serializedVersion: 2
-        x: 1750
-        y: 33
-        width: 342
-        height: 467
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1991
+        y: 10
+        width: 385
+        height: 511
+      alignment: 9
+      pivot: {x: 0.48992237, y: 0.51012325}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -366,12 +366,12 @@ TextureImporter:
       name: Escudos_10
       rect:
         serializedVersion: 2
-        x: 2198
-        y: 48
-        width: 347
-        height: 422
+        x: 2388
+        y: 14
+        width: 396
+        height: 493
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -388,7 +388,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e6cfb08b5ce34894d8d01d8dbe7389e8
     internalID: 0
     vertices: []
     indices: 

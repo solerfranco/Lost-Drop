@@ -89,8 +89,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 32
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -158,12 +158,12 @@ TextureImporter:
       name: Guardas_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 405
-        width: 268
-        height: 134
+        x: 67
+        y: 417
+        width: 330
+        height: 174
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: Guardas_1
       rect:
         serializedVersion: 2
-        x: 343
-        y: 431
-        width: 285
-        height: 87
+        x: 398
+        y: 420
+        width: 388
+        height: 170
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -202,12 +202,12 @@ TextureImporter:
       name: Guardas_2
       rect:
         serializedVersion: 2
-        x: 726
-        y: 427
-        width: 301
-        height: 103
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 787
+        y: 420
+        width: 353
+        height: 171
+      alignment: 9
+      pivot: {x: 0.48099437, y: 0.57846874}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: Guardas_3
       rect:
         serializedVersion: 2
-        x: 1073
-        y: 411
-        width: 250
-        height: 123
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1140
+        y: 419
+        width: 303
+        height: 166
+      alignment: 9
+      pivot: {x: 0.5050617, y: 0.4051133}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: Guardas_4
       rect:
         serializedVersion: 2
-        x: 1388
+        x: 1443
         y: 419
-        width: 332
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 400
+        height: 158
+      alignment: 9
+      pivot: {x: 0.53664887, y: 0.50742215}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: Guardas_5
       rect:
         serializedVersion: 2
-        x: 28
-        y: 230
-        width: 220
-        height: 124
+        x: 88
+        y: 241
+        width: 281
+        height: 164
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -290,12 +290,12 @@ TextureImporter:
       name: Guardas_6
       rect:
         serializedVersion: 2
-        x: 345
-        y: 250
-        width: 266
-        height: 63
+        x: 408
+        y: 255
+        width: 325
+        height: 116
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -312,12 +312,12 @@ TextureImporter:
       name: Guardas_7
       rect:
         serializedVersion: 2
-        x: 666
-        y: 219
-        width: 313
-        height: 101
+        x: 734
+        y: 234
+        width: 365
+        height: 138
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -334,12 +334,12 @@ TextureImporter:
       name: Guardas_8
       rect:
         serializedVersion: 2
-        x: 1035
-        y: 225
-        width: 242
-        height: 93
+        x: 1099
+        y: 237
+        width: 291
+        height: 133
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -356,12 +356,12 @@ TextureImporter:
       name: Guardas_9
       rect:
         serializedVersion: 2
-        x: 1355
-        y: 237
-        width: 275
-        height: 73
+        x: 1423
+        y: 236
+        width: 335
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -378,12 +378,12 @@ TextureImporter:
       name: Guardas_10
       rect:
         serializedVersion: 2
-        x: 21
-        y: 49
-        width: 239
-        height: 87
+        x: 91
+        y: 63
+        width: 278
+        height: 122
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -400,12 +400,12 @@ TextureImporter:
       name: Guardas_11
       rect:
         serializedVersion: 2
-        x: 363
+        x: 415
         y: 50
-        width: 233
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 302
+        height: 128
+      alignment: 9
+      pivot: {x: 0.551836, y: 0.49126458}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -422,12 +422,12 @@ TextureImporter:
       name: Guardas_12
       rect:
         serializedVersion: 2
-        x: 687
-        y: 27
-        width: 282
-        height: 89
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 756
+        y: 30
+        width: 321
+        height: 145
+      alignment: 9
+      pivot: {x: 0.55648696, y: 0.50903255}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -444,12 +444,12 @@ TextureImporter:
       name: Guardas_13
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 0
-        width: 304
-        height: 149
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1077
+        y: 7
+        width: 358
+        height: 200
+      alignment: 9
+      pivot: {x: 0.5754715, y: 0.49742576}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -466,12 +466,12 @@ TextureImporter:
       name: Guardas_14
       rect:
         serializedVersion: 2
-        x: 1374
-        y: 10
-        width: 249
-        height: 144
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1435
+        y: 17
+        width: 302
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5220305, y: 0.4940915}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -488,7 +488,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ec88b140a0c3798499cc401cc323eaa8
     internalID: 0
     vertices: []
     indices: 

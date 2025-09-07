@@ -83,8 +83,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 32
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -152,12 +152,12 @@ TextureImporter:
       name: Mangos_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 185
-        height: 554
+        x: 53
+        y: 19
+        width: 261
+        height: 612
       alignment: 9
-      pivot: {x: 0.5420145, y: 0.84139967}
+      pivot: {x: 0.5334052, y: 0.81019163}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Mangos_1
       rect:
         serializedVersion: 2
-        x: 243
-        y: 0
-        width: 182
-        height: 558
+        x: 356
+        y: 17
+        width: 253
+        height: 612
       alignment: 9
-      pivot: {x: 0.49525484, y: 0.9132432}
+      pivot: {x: 0.48983812, y: 0.8725602}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: Mangos_2
       rect:
         serializedVersion: 2
-        x: 519
-        y: 2
-        width: 132
-        height: 556
+        x: 631
+        y: 20
+        width: 209
+        height: 613
       alignment: 9
-      pivot: {x: 0.5065428, y: 0.9023033}
+      pivot: {x: 0.49041602, y: 0.8619824}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: Mangos_3
       rect:
         serializedVersion: 2
-        x: 700
-        y: 2
-        width: 187
-        height: 553
+        x: 840
+        y: 21
+        width: 269
+        height: 614
       alignment: 9
-      pivot: {x: 0.48614535, y: 0.8560724}
+      pivot: {x: 0.50702786, y: 0.83274126}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -240,12 +240,12 @@ TextureImporter:
       name: Mangos_4
       rect:
         serializedVersion: 2
-        x: 923
-        y: 2
-        width: 153
-        height: 546
+        x: 1139
+        y: 22
+        width: 212
+        height: 604
       alignment: 9
-      pivot: {x: 0.51693463, y: 0.893854}
+      pivot: {x: 0.50246674, y: 0.8636967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -262,12 +262,12 @@ TextureImporter:
       name: Mangos_5
       rect:
         serializedVersion: 2
-        x: 1106
-        y: 2
-        width: 134
-        height: 555
+        x: 1383
+        y: 21
+        width: 213
+        height: 618
       alignment: 9
-      pivot: {x: 0.49355578, y: 0.78165287}
+      pivot: {x: 0.5079558, y: 0.7485664}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -284,12 +284,12 @@ TextureImporter:
       name: Mangos_6
       rect:
         serializedVersion: 2
-        x: 1275
-        y: 4
-        width: 120
-        height: 549
+        x: 1661
+        y: 21
+        width: 197
+        height: 611
       alignment: 9
-      pivot: {x: 0.500002, y: 0.8917019}
+      pivot: {x: 0.50000185, y: 0.8861855}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -306,12 +306,12 @@ TextureImporter:
       name: Mangos_7
       rect:
         serializedVersion: 2
-        x: 1428
-        y: 5
-        width: 207
-        height: 551
+        x: 1897
+        y: 23
+        width: 267
+        height: 612
       alignment: 9
-      pivot: {x: 0.70026314, y: 0.80407363}
+      pivot: {x: 0.6750159, y: 0.77653724}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -328,12 +328,12 @@ TextureImporter:
       name: Mangos_8
       rect:
         serializedVersion: 2
-        x: 1711
-        y: 4
-        width: 174
-        height: 548
+        x: 2166
+        y: 20
+        width: 250
+        height: 615
       alignment: 9
-      pivot: {x: 0.51489115, y: 0.82937783}
+      pivot: {x: 0.49242187, y: 0.78553444}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,12 +350,12 @@ TextureImporter:
       name: Mangos_9
       rect:
         serializedVersion: 2
-        x: 1956
-        y: 1
-        width: 197
-        height: 555
+        x: 2422
+        y: 16
+        width: 249
+        height: 626
       alignment: 9
-      pivot: {x: 0.50438464, y: 0.9045842}
+      pivot: {x: 0.5190665, y: 0.8758688}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -372,12 +372,12 @@ TextureImporter:
       name: Mangos_10
       rect:
         serializedVersion: 2
-        x: 2213
-        y: 0
-        width: 85
-        height: 558
+        x: 2670
+        y: 14
+        width: 153
+        height: 629
       alignment: 9
-      pivot: {x: 0.510162, y: 0.9395545}
+      pivot: {x: 0.5468766, y: 0.87525314}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: Mangos_11
       rect:
         serializedVersion: 2
-        x: 2339
-        y: 0
-        width: 306
-        height: 558
+        x: 2824
+        y: 10
+        width: 378
+        height: 632
       alignment: 9
-      pivot: {x: 0.49591026, y: 0.8701616}
+      pivot: {x: 0.5048266, y: 0.83816355}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -416,12 +416,12 @@ TextureImporter:
       name: Mangos_12
       rect:
         serializedVersion: 2
-        x: 2649
-        y: 0
-        width: 416
-        height: 558
+        x: 3203
+        y: 12
+        width: 476
+        height: 633
       alignment: 9
-      pivot: {x: 0.5041527, y: 0.9333636}
+      pivot: {x: 0.5016515, y: 0.8637379}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

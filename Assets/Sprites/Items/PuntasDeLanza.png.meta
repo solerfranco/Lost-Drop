@@ -74,8 +74,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
-  spriteMeshType: 1
+  spriteExtrude: 32
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -144,11 +144,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 47
-        width: 289
-        height: 253
+        y: 49
+        width: 360
+        height: 331
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: PuntasDeLanza_1
       rect:
         serializedVersion: 2
-        x: 318
-        y: 27
-        width: 270
-        height: 278
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 361
+        y: 49
+        width: 342
+        height: 329
+      alignment: 9
+      pivot: {x: 0.48267138, y: 0.17318162}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: PuntasDeLanza_2
       rect:
         serializedVersion: 2
-        x: 625
-        y: 34
-        width: 216
-        height: 281
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 707
+        y: 50
+        width: 274
+        height: 348
+      alignment: 9
+      pivot: {x: 0.49073023, y: 0.20562246}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: PuntasDeLanza_3
       rect:
         serializedVersion: 2
-        x: 878
-        y: 52
-        width: 220
-        height: 232
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 984
+        y: 65
+        width: 291
+        height: 300
+      alignment: 9
+      pivot: {x: 0.49127176, y: 0.18392123}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: PuntasDeLanza_4
       rect:
         serializedVersion: 2
-        x: 1149
+        x: 1275
         y: 0
-        width: 232
-        height: 365
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 294
+        height: 439
+      alignment: 9
+      pivot: {x: 0.52015823, y: 0.2396439}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: PuntasDeLanza_5
       rect:
         serializedVersion: 2
-        x: 1428
-        y: 27
-        width: 97
-        height: 235
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1570
+        y: 38
+        width: 184
+        height: 287
+      alignment: 9
+      pivot: {x: 0.4907976, y: 0.22270346}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: PuntasDeLanza_6
       rect:
         serializedVersion: 2
-        x: 1568
-        y: 11
-        width: 183
-        height: 236
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1766
+        y: 30
+        width: 233
+        height: 293
+      alignment: 9
+      pivot: {x: 0.52494323, y: 0.32442}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: PuntasDeLanza_7
       rect:
         serializedVersion: 2
-        x: 1778
-        y: 24
-        width: 226
-        height: 261
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1999
+        y: 31
+        width: 301
+        height: 319
+      alignment: 9
+      pivot: {x: 0.491786, y: 0.20465088}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -319,12 +319,12 @@ TextureImporter:
       name: PuntasDeLanza_8
       rect:
         serializedVersion: 2
-        x: 2034
-        y: 35
-        width: 312
-        height: 219
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2307
+        y: 38
+        width: 369
+        height: 302
+      alignment: 9
+      pivot: {x: 0.504589, y: 0.20283516}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: PuntasDeLanza_9
       rect:
         serializedVersion: 2
-        x: 2375
-        y: 21
-        width: 259
-        height: 294
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2677
+        y: 26
+        width: 323
+        height: 368
+      alignment: 9
+      pivot: {x: 0.4973787, y: 0.30214402}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 957997aaa57d6ad4ebfc390a7b2291ad
     internalID: 0
     vertices: []
     indices: 
