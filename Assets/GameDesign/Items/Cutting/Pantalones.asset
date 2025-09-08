@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b487ac98523dad408d0137a38e263b5, type: 3}
-  m_Name: Zanahoria
+  m_Name: Pantalones
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  name: Zanahoria
-  weight: 10
-  materialType: 3
-  materialRarity: 1
-  sprite: {fileID: 3152864836816840579, guid: 0a01ebacebe5a9f4dabc9948372ab30e, type: 3}
+  itemName: Pantalones
+  weight: 1
+  materialType: 0
+  materialRarity: 0
+  sprite: {fileID: -5381132043621090516, guid: b81a17e5e3b0fd44e92fac10f0aca608, type: 3}
+  colliderType: 0
+  colliderOffset: {x: 0.40891933, y: -0.034625173}
+  colliderSize: {x: 1.2326183, y: 1.3580608}
+  colliderRadius: 0
+  capsuleDir: 0
+  polygonPoints: []

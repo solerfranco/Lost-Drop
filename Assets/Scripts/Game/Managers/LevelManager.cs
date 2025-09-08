@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private int _currentDay;
+    private int _currentDay = 1;
 
     [ShowInInspector]
     public int CurrentDay => _currentDay;

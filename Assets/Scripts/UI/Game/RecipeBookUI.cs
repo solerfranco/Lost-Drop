@@ -18,10 +18,16 @@ public class RecipeBookUI : MonoBehaviour
     private SerializedDictionary<MaterialType, RecipeIngredient> ingredientsByMaterialType;
 
     [SerializeField]
+    private SerializedDictionary<Weapon, GameObject> blueprintsByWeapon;
+
+    [SerializeField]
     private LocalizedTextMeshPro hitsNeededTMP;
 
     [SerializeField]
     private WeaponRecipeSO defaultRecipe;
+
+    [SerializeField]
+    private WeaponRecipeSO selectedRecipe;
 
 
     public UnityEvent OnOpened, OnClosed, OnWeaponChanged;
@@ -62,10 +68,19 @@ public class RecipeBookUI : MonoBehaviour
         }
     }
 
+    public void CreateBlueprint()
+    {
+        GameObject blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(3, -7, 20), Quaternion.Euler(0,0,90));
+        blueprint.transform.DOMoveY(-2.5f, 0.6f).SetEase(Ease.OutSine);
+
+    }
+
     public void SelectWeaponRecipe(WeaponRecipeSO weaponRecipe)
     {
         OnWeaponChanged?.Invoke();
         DisableAllIngredients();
+
+        selectedRecipe = weaponRecipe;
 
         weaponSprite.sprite = weaponRecipe.Sprite;
 

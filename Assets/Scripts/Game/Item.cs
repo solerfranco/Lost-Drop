@@ -18,40 +18,23 @@ public class Item : DraggableElement
     private MaterialRarity materialRarity;
 
     #endregion
-
     private Vector3 velocity;
     private Vector3 initialScale;
 
-    [SerializeField]
-    private Transform sprite;
+    [SerializeField] private Transform sprite;
+    [SerializeField] private Transform tooltip;
+    [SerializeField] private TextMeshProUGUI weightTMP;
+    [SerializeField] private TextMeshProUGUI itemTMP;
+    [SerializeField] private Image itemTypeImage;
+    [SerializeField] private Image tooltipBackground;
 
-    [SerializeField]
-    private Transform tooltip;
-
-    [SerializeField]
-    private TextMeshProUGUI weightTMP;
-
-    [SerializeField]
-    private TextMeshProUGUI itemTMP;
-    [SerializeField]
-    private Image itemTypeImage;
-    [SerializeField]
-    private Image tooltipBackground;
-
-    // [SerializeField]
-    // private SerializedDictionary<MaterialType, MaterialData> materialsData;
-
-    // [SerializeField]
-    // private SerializedDictionary<MaterialRarity, Sprite> tooltipBackgroundRarities;
+    private Collider2D activeCollider;
 
     protected override void Awake()
     {
         base.Awake();
         initialScale = sprite.localScale;
-        // weightTMP.text = weight.ToString();
-        // itemTMP.text = materialsData[materialType].Description;
-        // itemTypeImage.sprite = materialsData[materialType].Sprite;
-        // tooltipBackground.sprite = tooltipBackgroundRarities[materialRarity];
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         RandomizeRotation();
     }
 
@@ -66,8 +49,47 @@ public class Item : DraggableElement
     {
         materialType = itemData.materialType;
         materialRarity = itemData.materialRarity;
-        spriteRenderer.sprite = itemData.sprite;
         weight = itemData.weight;
+
+        if (spriteRenderer != null)
+            spriteRenderer.sprite = itemData.sprite;
+
+        // Remove any old collider
+        foreach (var col in GetComponents<Collider2D>())
+            Destroy(col);
+
+        // Add correct collider based on SO
+        switch (itemData.colliderType)
+        {
+            case ColliderShapeType.Box:
+                var box = sprite.gameObject.AddComponent<BoxCollider2D>();
+                box.size = itemData.colliderSize;
+                box.offset = itemData.colliderOffset;
+                activeCollider = box;
+                break;
+
+            case ColliderShapeType.Circle:
+                var circle = sprite.gameObject.AddComponent<CircleCollider2D>();
+                circle.radius = itemData.colliderRadius;
+                circle.offset = itemData.colliderOffset;
+                activeCollider = circle;
+                break;
+
+            case ColliderShapeType.Capsule:
+                var capsule = sprite.gameObject.AddComponent<CapsuleCollider2D>();
+                capsule.size = itemData.colliderSize;
+                capsule.offset = itemData.colliderOffset;
+                capsule.direction = itemData.capsuleDir;
+                activeCollider = capsule;
+                break;
+
+            case ColliderShapeType.Polygon:
+                var poly = sprite.gameObject.AddComponent<PolygonCollider2D>();
+                poly.points = itemData.polygonPoints;
+                poly.offset = itemData.colliderOffset;
+                activeCollider = poly;
+                break;
+        }
     }
 
     public void RandomizeRotation()
@@ -98,28 +120,25 @@ public class Item : DraggableElement
             return;
         }
 
-        // Optional inertia throw
         sprite.DOScale(initialScale, 1f).SetEase(Ease.OutBounce);
 
-        //Set z position to 0
         Vector3 targetPos = transform.position;
         targetPos.z = 0;
         transform.position = targetPos;
 
-        //Calculate mouse position
-        Vector2 mouseScreenPos = Pointer.current.position.ReadValue();
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+        Vector3 pointerPosition = Pointer.current.position.ReadValue();
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(pointerPosition);
+        worldPos.z = 0;
 
-        //Move the item to mouse last position to make the dragging feel better
-        transform.DOMove(worldPos, 0.25f).SetEase(Ease.OutQuad);
-
-        VerifyItemPlacement(worldPos);
-        
+        if (!VerifyItemPlacement(worldPos))
+        {
+            transform.DOMove(worldPos += dragOffset, 0.25f).SetEase(Ease.OutQuad);
+        }
     }
 
-    public void VerifyItemPlacement(Vector3 pointerWorldPosition)
+
+    public bool VerifyItemPlacement(Vector3 pointerWorldPosition)
     {
-        // Raycast all colliders at mouse position to find conveyor belt or Weapon 
         RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(pointerWorldPosition, Vector2.zero);
 
         bool droppedOnWrongFragment = false;
@@ -130,6 +149,7 @@ public class Item : DraggableElement
                 if (hit.collider.TryGetComponent<ConveyorBelt>(out var conveyor))
                 {
                     conveyor.PlaceItem(transform);
+                    return false;
                 }
                 if (hit.collider.TryGetComponent<WeaponFragment>(out var weaponPiece))
                 {
@@ -139,8 +159,7 @@ public class Item : DraggableElement
                         transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutQuad);
                         transform.DOLocalMove(Vector3.zero + Vector3.forward * weaponPiece.transform.position.z, 0.25f).SetEase(Ease.OutQuad);
                         sprite.DOLocalRotate(Vector3.forward * weaponPiece.transform.rotation.eulerAngles.z, 0.25f).SetEase(Ease.OutQuad);
-                        droppedOnWrongFragment = false;
-                        break;
+                        return true;
                     }
                     else
                     {
@@ -152,37 +171,21 @@ public class Item : DraggableElement
         if (droppedOnWrongFragment)
         {
             transform.DOMove(transform.position + Vector3.left * UnityEngine.Random.Range(2f, 4f), 0.25f).SetEase(Ease.OutQuad);
+            return true;
         }
+        return false;
     }
 
     public void DisableCollider()
     {
-        Collider2D col = GetComponentInChildren<Collider2D>();
-        if (col != null)
-        {
-            col.enabled = false;
-        }
+        if (activeCollider != null)
+            activeCollider.enabled = false;
     }
 
     public void EnableCollider()
     {
-        Collider2D col = GetComponentInChildren<Collider2D>();
-        if (col != null)
-        {
-            col.enabled = true;
-        }
-    }
-
-    public override void OnPointerEnter(PointerEventData eventData)
-    {
-        base.OnPointerEnter(eventData);
-        DOTween.Kill(tooltip, true);
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-        DOTween.Kill(tooltip);
+        if (activeCollider != null)
+            activeCollider.enabled = true;
     }
 
     private Transform darkHoleTransform;
@@ -190,7 +193,9 @@ public class Item : DraggableElement
     public void EnterDarkHole(Transform darkHole)
     {
         darkHoleTransform = darkHole;
-        GetComponentInChildren<Collider2D>().enabled = false;
+        if (activeCollider != null)
+            activeCollider.enabled = false;
+
         DOTween.Kill(transform);
         transform.DOScale(Vector3.zero, 0.8f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
@@ -200,17 +205,23 @@ public class Item : DraggableElement
 
     void Update()
     {
-        // if (darkHoleTransform == null) return;
-
-        // transform.position = Vector3.MoveTowards(transform.position, darkHoleTransform.position, 5 * Time.deltaTime);
-        // transform.Rotate(Vector3.back * 200 * Time.deltaTime);
+        if (darkHoleTransform != null)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, darkHoleTransform.position, ref velocity, 0.075f);
+            return;
+        }
 
         if (isBeingDragged)
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
             worldPos.z = transform.position.z;
+            worldPos += dragOffset;
 
             transform.position = Vector3.SmoothDamp(transform.position, worldPos, ref velocity, 0.1f);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         }
     }
 }

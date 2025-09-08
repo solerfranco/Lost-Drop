@@ -9,5 +9,7 @@ Game.Material.Piercing,Piercing item {0},Objeto punzante {0}
 Game.Material.Cutting,Cutting item {0},Objeto cortante {0}
 Game.Crafting.Hit,Hit X{0},Golpe X{0}
 Game.UI.Preparation,Preparation,Preparación
+Game.UI.SelectRecipe,Select,Seleccionar
+,,
 ,,
 Game.UI.ClosedSign,Closed,Cerrado

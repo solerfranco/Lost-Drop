@@ -127,9 +127,13 @@ public class WeaponBlueprint : DraggableElement
         if (isBeingDragged)
         {
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
-            worldPos.z = transform.position.z;
+            worldPos.z = 0;
 
-            transform.position = Vector3.SmoothDamp(transform.position, worldPos, ref velocity, 0.1f);
+            transform.position = Vector3.SmoothDamp(transform.position, worldPos + dragOffset, ref velocity, 0.1f);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 20 + transform.position.y);
         }
     }
 }

@@ -36,13 +36,31 @@ public class CustomersQueueManager : MonoBehaviour
 
     public bool IsQueueFull => _customerSlots[maxCustomers - 1] != null;
 
+    public void RemoveFromQueue(Customer customer)
+    {
+        if (customer == null) return;
+
+        for (int i = 0; i < _customerSlots.Length; i++)
+        {
+            if (_customerSlots[i] == customer)
+            {
+                // Remove reference from the slot
+                _customerSlots[i] = null;
+
+                // Move the rest of the queue forward to fill the gap
+                MoveTheQueueForward();
+                return;
+            }
+        }
+    }
+
     public void MoveTheQueueForward()
     {
         for (int i = 1; i < maxCustomers; i++)
         {
             if (_customerSlots[i] != null && _customerSlots[i - 1] == null)
             {
-                _customerSlots[i].MoveToPosition(queuePositions[i - 1].position, i-1 == 0, 0);
+                _customerSlots[i].MoveToPosition(queuePositions[i - 1].position, i - 1 == 0, 0);
 
                 _customerSlots[i - 1] = _customerSlots[i];
                 _customerSlots[i] = null;

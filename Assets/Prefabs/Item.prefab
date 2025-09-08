@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7991308694974598136}
   - component: {fileID: 7373890679744673992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,6 +65,7 @@ MonoBehaviour:
   itemTMP: {fileID: 0}
   itemTypeImage: {fileID: 0}
   tooltipBackground: {fileID: 0}
+  testPrefab: {fileID: 3818157986332391720, guid: d8f9dec4ec4165d43a696d4390a1c9b0, type: 3}
 --- !u!1 &7649210002720229647
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,8 +77,8 @@ GameObject:
   - component: {fileID: 3174086405994519413}
   - component: {fileID: 4240716603395388013}
   - component: {fileID: 5002331871728873097}
-  - component: {fileID: 7934323325387235621}
-  m_Layer: 0
+  - component: {fileID: 6808221983588086344}
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +147,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5381132043621090516, guid: b81a17e5e3b0fd44e92fac10f0aca608, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1097872f30623e4429683332c06616cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -173,49 +174,19 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
---- !u!61 &7934323325387235621
-BoxCollider2D:
+--- !u!114 &6808221983588086344
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7649210002720229647}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.26419806, y: 0.5247433}
-    oldSize: {x: 1.665, y: 2.24686}
-    newSize: {x: 2.5, y: 2.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.75, y: 1.75}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf97b001a792254093512d2cf3f4b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColliderToSO
+  templateSO: {fileID: 11400000, guid: 3d1cf4978f30f72449c29215643aa3d3, type: 2}
+  savePath: Assets/GameDesign/Items
+  materialType: 3
+  itemName: Llave

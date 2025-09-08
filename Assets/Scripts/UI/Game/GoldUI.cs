@@ -29,7 +29,7 @@ public class GoldUI : MonoBehaviour
         {
             displayedGold = x;
             goldText.text = $"${displayedGold:D4}";
-        }, currentGold, 0.5f) // 0.5 seconds for tween duration
+        }, currentGold, 1f)
         .SetTarget(this)
         .SetEase(Ease.OutCubic);
 
