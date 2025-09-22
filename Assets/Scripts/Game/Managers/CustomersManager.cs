@@ -49,7 +49,7 @@ public class CustomersManager : MonoBehaviour
         float evaluation = currentSpawnData.CustomerFrequency.Evaluate(1 - TimeManager.Instance.RemainingFraction);
         evaluation = Mathf.Floor(evaluation);
 
-        
+
         for (int i = 0; i < evaluation; i++)
         {
             if (!CustomersQueueManager.Instance.TryFindAvailableQueueSlot(out int availableSlotIndex)) yield break;
@@ -60,6 +60,7 @@ public class CustomersManager : MonoBehaviour
             customer.Initialize(_customerSpritesBag.GetRandom());
 
             yield return new WaitForSeconds(currentSpawnData.SpawnDelay);
+            if(!enabled) yield break;
         }
     }
 }

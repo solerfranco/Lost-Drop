@@ -58,8 +58,6 @@ public class WeaponBlueprint : DraggableElement
         dustParticleSystem.Play();
         if (currentHits >= weaponRecipe.HitsNeeded)
         {
-            //Weapon assembly is complete
-            Debug.Log("Weapon Assembly Complete!");
 
             // Disable all child colliders
 

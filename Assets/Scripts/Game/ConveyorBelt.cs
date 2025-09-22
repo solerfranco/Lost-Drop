@@ -19,7 +19,7 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField]
     private Transform itemsContainer;
 
-    private Material _material;
+    private MaterialPropertyBlock _materialPropertyBlock;
 
     private float currentSpeed = 0f;
 
@@ -55,7 +55,7 @@ public class ConveyorBelt : MonoBehaviour
 
     void Awake()
     {
-        _material = beltSpriteRenderer.material;
+        _materialPropertyBlock = new();
     }
 
     private float currentScroll = 0f;
@@ -65,7 +65,9 @@ public class ConveyorBelt : MonoBehaviour
         if (isRunning)
         {
             currentScroll += currentSpeed * speed * Time.deltaTime;
-            _material.SetFloat("_Offset", currentScroll);
+            beltSpriteRenderer.GetPropertyBlock(_materialPropertyBlock);
+            _materialPropertyBlock.SetFloat("_Offset", currentScroll);
+            beltSpriteRenderer.SetPropertyBlock(_materialPropertyBlock);
 
             //Move each item transform to the right based on delta time
             foreach (Transform item in itemsContainer)

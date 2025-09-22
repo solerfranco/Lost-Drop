@@ -145,6 +145,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 99890a754c308bd498b56bdbc4ededeb, type: 3}
     - target: {fileID: 4601214982178268360, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: weaponRecipe
+      value: 
+      objectReference: {fileID: 11400000, guid: 00342da07ef72a34d9ad3670cc0d56a3, type: 2}
+    - target: {fileID: 4601214982178268360, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: weaponFragments.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -195,6 +199,14 @@ PrefabInstance:
     - target: {fileID: 5524851170960253263, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570979202993861547, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570979202993861547, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5699342954651812575, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: m_Name

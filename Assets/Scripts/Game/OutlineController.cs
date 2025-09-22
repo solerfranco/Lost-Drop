@@ -4,26 +4,24 @@ public class OutlineTrigger : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer spriteRenderer;
-    private Material material;
+    private MaterialPropertyBlock materialPropertyBlock;
 
     void Awake()
     {
-        material = spriteRenderer.material;
+        materialPropertyBlock = new MaterialPropertyBlock();
     }
 
     public void EnableOutline()
     {
-        if (material != null)
-        {
-            material.SetFloat("_OutlineAlpha", 1);
-        }
+        spriteRenderer.GetPropertyBlock(materialPropertyBlock);
+        materialPropertyBlock.SetFloat("_OutlineAlpha", 1);
+        spriteRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 
     public void DisableOutline()
     {
-        if (material != null)
-        {
-            material.SetFloat("_OutlineAlpha", 0);
-        }
+        spriteRenderer.GetPropertyBlock(materialPropertyBlock);
+        materialPropertyBlock.SetFloat("_OutlineAlpha", 0);
+        spriteRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 }

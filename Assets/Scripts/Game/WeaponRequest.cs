@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WeaponRequest : MonoBehaviour
 {
     private Weapon _weapon;
-    public Weapon WeaponType => _weapon;
+    public Weapon Weapon => _weapon;
 
     private int _weight;
     public int Weight => _weight;

@@ -7,7 +7,7 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
 {
     [SerializeField]
     protected SpriteRenderer spriteRenderer;
-    private Material material;
+    private MaterialPropertyBlock materialPropertyBlock;
 
     protected virtual bool canDisableOutline => true;
 
@@ -22,24 +22,22 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
     {
         if (spriteRenderer != null)
         {
-            material = spriteRenderer.material;
+            materialPropertyBlock = new MaterialPropertyBlock();
         }
     }
 
     protected void EnableOutline()
     {
-        if (material != null)
-        {
-            material.SetFloat("_OutlineAlpha", 1);
-        }
+        spriteRenderer.GetPropertyBlock(materialPropertyBlock);
+        materialPropertyBlock.SetFloat("_OutlineAlpha", 1);
+        spriteRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 
     protected void DisableOutline()
     {
-        if (material != null && canDisableOutline)
-        {
-            material.SetFloat("_OutlineAlpha", 0);
-        }
+        spriteRenderer.GetPropertyBlock(materialPropertyBlock);
+        materialPropertyBlock.SetFloat("_OutlineAlpha", 0);
+        spriteRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)

@@ -16,17 +16,17 @@ public class Item : DraggableElement
     private int weight = 0;
     public int Weight => weight;
     private MaterialRarity materialRarity;
+    public MaterialRarity MaterialRarity => materialRarity;
 
     #endregion
     private Vector3 velocity;
     private Vector3 initialScale;
 
     [SerializeField] private Transform sprite;
-    [SerializeField] private Transform tooltip;
+    [SerializeField] private ItemTooltip tooltip;
     [SerializeField] private TextMeshProUGUI weightTMP;
     [SerializeField] private TextMeshProUGUI itemTMP;
     [SerializeField] private Image itemTypeImage;
-    [SerializeField] private Image tooltipBackground;
 
     private Collider2D activeCollider;
 
@@ -134,6 +134,18 @@ public class Item : DraggableElement
         {
             transform.DOMove(worldPos += dragOffset, 0.25f).SetEase(Ease.OutQuad);
         }
+    }
+
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        base.OnPointerEnter(eventData);
+        tooltip.Open();
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        tooltip.Close();
     }
 
 

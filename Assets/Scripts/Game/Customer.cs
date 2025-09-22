@@ -3,9 +3,10 @@ using System.Linq;
 using DG.Tweening;
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
-public class Customer : MonoBehaviour
+public class Customer : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField]
     private float animationBaseTime = 0.25f;
@@ -29,9 +30,12 @@ public class Customer : MonoBehaviour
     [SerializeField]
     private WeaponRequest weaponRequest;
 
-    private float currentPatience;
+    private float _currentPatience;
 
-    // private DeliveryUI deliveryUI;
+    private DeliveryUI _deliveryUI;
+
+    [SerializeField]
+    private MMF_Player squashMmfPlayer;
 
     public void Initialize(Sprite sprite)
     {
@@ -44,27 +48,28 @@ public class Customer : MonoBehaviour
 
         entersStoreSFXPlayer.PlayFeedbacks();
 
-        currentPatience = patienceByDay[LevelManager.Instance.CurrentDay];
+        _currentPatience = patienceByDay[LevelManager.Instance.CurrentDay];
 
         weaponRequest.RandomizeRequest();
 
-        // deliveryUI = DeliveriesSystem.Instance.CreateDeliveryWidget(currentPatience, weaponType, weight);
+        _deliveryUI = DeliveriesManager.Instance.CreateDeliveryWidget(_currentPatience, weaponRequest.Weapon, weaponRequest.Weight);
     }
 
     void Update()
     {
-        // currentPatience -= Time.deltaTime;
-        // if (currentPatience <= 0)
-        // {
-        //     GetComponent<Collider2D>().enabled = false;
-        //     MoveToPosition(Vector3.right * 15);
-        //     // queue.customers[0] = null;
-        //     // queue.MoveTheQueueForward();
-        //     // deliveryUI.DeleteWidget();
-        //     currentPatience = 1000;
-        //     // WinScreen.Instance.WrongDeliveries++;
-        //     Destroy(gameObject, 5f);
-        // }
+        _currentPatience -= Time.deltaTime;
+        if (_currentPatience <= 0)
+        {
+            LevelManager.Instance.AddDelivery(false, false);
+            GetComponent<Collider2D>().enabled = false;
+            MoveToPosition(Vector3.right * 15, false);
+
+            CustomersQueueManager.Instance.RemoveFromQueue(this);
+            
+            _deliveryUI.DeleteWidget();
+            _currentPatience = 1000;
+            Destroy(gameObject, 5f);
+        }
 
     }
 
@@ -97,13 +102,15 @@ public class Customer : MonoBehaviour
 
     public bool ReceiveItem(WeaponBlueprint weaponBlueprint)
     {
-        bool isRightWeapon = weaponBlueprint.Weapon == weaponRequest.WeaponType;
+        bool isRightWeapon = weaponBlueprint.Weapon == weaponRequest.Weapon;
         bool isRightweight = weaponBlueprint.Weight == weaponRequest.Weight;
 
         float goldMultiplier = 1;
 
         if (isOnCounter)
         {
+            LevelManager.Instance.AddDelivery(isRightweight, isRightWeapon);
+
             weaponBlueprint.transform.SetParent(transform);
             weaponBlueprint.transform.position = weaponHoldingTransform.position;
 
@@ -126,24 +133,20 @@ public class Customer : MonoBehaviour
             MoveToPosition(Vector3.right * 15, false, 1);
 
             CustomersQueueManager.Instance.RemoveFromQueue(this);
-            // deliveryUI.DeleteWidget();
+            _deliveryUI.DeleteWidget();
             GoldManager.Instance.AddGold((int)(50 * goldMultiplier));
 
-            if (!isRightWeapon && !isRightweight)
-            {
-                // WinScreen.Instance.WrongDeliveries++;
-            }
-            else
-            {
-                // WinScreen.Instance.rightDeliveries++;
-            }
-
-            currentPatience = 1000;
+            _currentPatience = 1000;
 
             DOTween.Kill(gameObject);
             Destroy(gameObject, 5f);
         }
 
         return isOnCounter;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        squashMmfPlayer.PlayFeedbacks();
     }
 }

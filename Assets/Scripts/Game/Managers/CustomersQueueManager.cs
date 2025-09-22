@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,6 +7,11 @@ public class CustomersQueueManager : MonoBehaviour
     public static CustomersQueueManager Instance;
 
     private Customer[] _customerSlots;
+    private bool _dayEnded = false;
+    private bool _firedAfterDayEnd = false;
+
+    // Event fired when the store day has ended and the last customer leaves the queue
+    public event Action OnStoreClosedAndEmpty;
 
     [Range(1, 5)]
     [SerializeField]
@@ -32,6 +38,18 @@ public class CustomersQueueManager : MonoBehaviour
     private void Start()
     {
         _customerSlots = new Customer[maxCustomers];
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnDayEnded += HandleDayEnded;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnDayEnded -= HandleDayEnded;
+        }
     }
 
     public bool IsQueueFull => _customerSlots[maxCustomers - 1] != null;
@@ -49,8 +67,36 @@ public class CustomersQueueManager : MonoBehaviour
 
                 // Move the rest of the queue forward to fill the gap
                 MoveTheQueueForward();
+                // If the day already ended and there are no customers left, fire the event once
+
+                if (_dayEnded && !_firedAfterDayEnd && !AnyCustomersLeft())
+                {
+                    _firedAfterDayEnd = true;
+                    OnStoreClosedAndEmpty?.Invoke();
+                }
                 return;
             }
+        }
+    }
+
+    private bool AnyCustomersLeft()
+    {
+        for (int i = 0; i < _customerSlots.Length; i++)
+        {
+            if (_customerSlots[i] != null) return true;
+        }
+        return false;
+    }
+
+    private void HandleDayEnded()
+    {
+        _dayEnded = true;
+        _firedAfterDayEnd = false; // reset so the event can fire when the last customer leaves
+        // If there are already no customers when the day ends, fire immediately
+        if (!AnyCustomersLeft())
+        {
+            _firedAfterDayEnd = true;
+            OnStoreClosedAndEmpty?.Invoke();
         }
     }
 

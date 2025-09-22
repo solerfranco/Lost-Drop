@@ -201,6 +201,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a3f01186d61bed143a30404257152894, type: 3}
     - target: {fileID: 4601214982178268360, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: weaponRecipe
+      value: 
+      objectReference: {fileID: 11400000, guid: e7a65a43d4c325944bb12738693073eb, type: 2}
+    - target: {fileID: 4601214982178268360, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: weaponFragments.Array.size
       value: 3
       objectReference: {fileID: 0}
