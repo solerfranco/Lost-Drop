@@ -35,6 +35,8 @@ public class EndOfDayScreen : MonoBehaviour
 
     private void StoreClosedAndEmpty()
     {
+        OverlayManager.Instance.FadeToBlack();
+
         var deliveries = LevelManager.Instance.Deliveries;
 
         titleTMP.LocalizationVariables = new object[] { LevelManager.Instance.CurrentDay };
@@ -69,7 +71,7 @@ public class EndOfDayScreen : MonoBehaviour
     {
         float delay = 0.2f;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         foreach (var (count, sprite) in deliveryData)
         {
