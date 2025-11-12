@@ -31,13 +31,13 @@ public class OverlayManager : MonoBehaviour
         overlay.enabled = true;
 
         DOTween.Kill(overlay);
-        overlay.DOColor(overlayColor, 0.3f).SetEase(Ease.InOutSine);
+        overlay.DOColor(overlayColor, 0.15f).SetEase(Ease.InOutSine);
     }
 
     public void Clear()
     {
         DOTween.Kill(overlay);
-        overlay.DOColor(Color.clear, 0.3f).SetEase(Ease.InOutSine).OnComplete(() =>
+        overlay.DOColor(Color.clear, 0.15f).SetEase(Ease.InOutSine).OnComplete(() =>
         {
             overlay.enabled = false;
         });
