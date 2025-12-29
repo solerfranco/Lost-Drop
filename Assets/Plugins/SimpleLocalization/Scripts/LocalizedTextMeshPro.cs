@@ -54,6 +54,12 @@ namespace Assets.SimpleLocalization.Scripts
         {
             if (_localizationKey == null || tmp == null) return;
 
+            if (_localizationKey == "") 
+            {
+                tmp.text = "";
+                return;
+            }
+            
             if( _localizationVariables != null )
             {
                 tmp.text = LocalizationManager.Localize(LocalizationKey, LocalizationVariables);

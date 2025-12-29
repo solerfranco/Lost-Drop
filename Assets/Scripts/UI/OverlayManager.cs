@@ -6,6 +6,8 @@ public class OverlayManager : MonoBehaviour
 {
     public static OverlayManager Instance;
 
+    public bool IsOverlayClear => !overlay.enabled || overlay.color.a <= 0f;
+
     [SerializeField]
     private Image overlay;
 
@@ -26,18 +28,18 @@ public class OverlayManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void FadeToBlack()
+    public void FadeToBlack(float alpha = 1f, float duration = 0.15f)
     {
         overlay.enabled = true;
 
         DOTween.Kill(overlay);
-        overlay.DOColor(overlayColor, 0.15f).SetEase(Ease.InOutSine);
+        overlay.DOColor(new Color(overlayColor.r, overlayColor.g, overlayColor.b, alpha), duration).SetEase(Ease.InOutSine);
     }
 
-    public void Clear()
+    public void Clear(float duration = 0.15f)
     {
         DOTween.Kill(overlay);
-        overlay.DOColor(Color.clear, 0.15f).SetEase(Ease.InOutSine).OnComplete(() =>
+        overlay.DOColor(Color.clear, duration).SetEase(Ease.InOutSine).OnComplete(() =>
         {
             overlay.enabled = false;
         });

@@ -20,6 +20,9 @@ MonoBehaviour:
   - Name: Settings
     Id: 331980525
     TextAsset: {fileID: 4900000, guid: 9e915f09744b99e4eb2d3ded7f443ddc, type: 3}
+  - Name: Intro
+    Id: 551781128
+    TextAsset: {fileID: 4900000, guid: cfa2d56c88990294aad7272d7d6ccc10, type: 3}
   - Name: Credits
     Id: 535504836
     TextAsset: {fileID: 4900000, guid: 2984c7e82ac845f418884af27d9a87df, type: 3}

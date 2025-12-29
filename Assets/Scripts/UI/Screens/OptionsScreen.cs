@@ -6,11 +6,27 @@ using UnityEngine.UI;
 
 public class OptionsScreen : MonoBehaviour
 {
+    public static OptionsScreen Instance;
+
     [SerializeField]
     private RectTransform optionsScreen;
 
     [SerializeField]
     private Slider sfxSlider, musicSlider;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -27,7 +43,7 @@ public class OptionsScreen : MonoBehaviour
 
     public void Open()
     {
-        OverlayManager.Instance.FadeToBlack();
+        OverlayManager.Instance.FadeToBlack(0.7f);
 
         optionsScreen.gameObject.SetActive(true);
         optionsScreen.DOAnchorPosY(0, 0.3f).SetEase(Ease.OutBack, 3);

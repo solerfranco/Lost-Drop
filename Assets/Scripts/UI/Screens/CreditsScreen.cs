@@ -8,7 +8,7 @@ public class CreditsScreen : MonoBehaviour
 
     public void Open()
     {
-        OverlayManager.Instance.FadeToBlack();
+        OverlayManager.Instance.FadeToBlack(0.7f);
 
         creditsScreen.localRotation = Quaternion.Euler(0, 0, -45);
         creditsScreen.gameObject.SetActive(true);
