@@ -26,6 +26,9 @@ public class WeaponBlueprint : DraggableElement
     [SerializeField]
     private ParticleSystem dustParticleSystem;
 
+    private bool isWeaponFinished = false;
+    public bool IsWeaponFinished => isWeaponFinished;
+
     void Start()
     {
         foreach (WeaponFragment fragment in weaponFragments)
@@ -63,6 +66,7 @@ public class WeaponBlueprint : DraggableElement
 
             weaponOutline.enabled = false;
             spriteRenderer.transform.DOScale(Vector3.zero, 0.3f);
+            isWeaponFinished = true;
 
             foreach (var collider in GetComponentsInChildren<Collider2D>().Skip(1))
             {

@@ -35,7 +35,7 @@ public class EndOfDayScreen : MonoBehaviour
 
     private void StoreClosedAndEmpty()
     {
-        OverlayManager.Instance.FadeToBlack();
+        OverlayManager.Instance.FadeToBlack(0.7f);
 
         var deliveries = LevelManager.Instance.Deliveries;
 

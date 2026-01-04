@@ -23,6 +23,9 @@ MonoBehaviour:
   - Name: Intro
     Id: 551781128
     TextAsset: {fileID: 4900000, guid: cfa2d56c88990294aad7272d7d6ccc10, type: 3}
+  - Name: Tutorial
+    Id: 700005299
+    TextAsset: {fileID: 4900000, guid: eef238b0a1b1c014eaa0ce95322f24fe, type: 3}
   - Name: Credits
     Id: 535504836
     TextAsset: {fileID: 4900000, guid: 2984c7e82ac845f418884af27d9a87df, type: 3}

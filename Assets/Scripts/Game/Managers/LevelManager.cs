@@ -19,9 +19,11 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
+        _currentDay = PlayerPrefs.GetInt("CurrentDay", 0);
     }
 
-    private int _currentDay = 1;
+    private int _currentDay = 0;
 
     [ShowInInspector]
     public int CurrentDay => _currentDay;
@@ -52,6 +54,7 @@ public class LevelManager : MonoBehaviour
     public void AdvanceToNextDay()
     {
         _currentDay++;
+        PlayerPrefs.SetInt("CurrentDay", _currentDay);
     }
 
 

@@ -20,6 +20,8 @@ public class DraggableElement : InteractableElement
     [SerializeField]
     protected bool isBeingDragged;
 
+    public bool IsBeingDragged => isBeingDragged;
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         DOTween.Kill(transform);

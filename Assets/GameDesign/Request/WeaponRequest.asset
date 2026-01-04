@@ -36,6 +36,8 @@ MonoBehaviour:
         MaxWeight: 10
   WeaponsByDay:
     _serializedList:
+    - Key: 0
+      Value: 01000000
     - Key: 1
       Value: 0000000001000000
     - Key: 2

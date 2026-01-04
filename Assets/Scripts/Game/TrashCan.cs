@@ -14,8 +14,13 @@ public class TrashCan : MonoBehaviour
 
     public void SpawnItem()
     {
+        SpawnSpecificItem(itemDataSO[Random.Range(0, itemDataSO.Length)]);
+    }
+
+    public void SpawnSpecificItem(ItemDataSO itemData)
+    {
         Item item = Instantiate(itemPrefab, spawnPoint.position, Quaternion.identity);
-        item.Initialize(itemDataSO[Random.Range(0, itemDataSO.Length)]);
+        item.Initialize(itemData);
 
         item.DisableCollider();
         item.transform.DOLocalMoveX(item.transform.localPosition.x + Random.Range(-3f, 3f), .75f).SetEase(Ease.OutQuad).OnComplete(() =>

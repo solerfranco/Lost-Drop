@@ -37,6 +37,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-542175800-0
         - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-260238118-0
         - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-1684646134-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-1986867371-0
+        - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-5802077877866545201-2103024888
+        - globalObjectIdString: GlobalObjectId_V1-2-8e9c01331b6804c4597aee2f83682287-3486842287835212684-614547939
         values:
         - colorIndex: 2
           iconNameOrGuid: StandaloneInputModule Icon
@@ -110,6 +113,18 @@ MonoBehaviour:
           iconNameOrGuid: AudioSource Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 4
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 4
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-a9568988b34c37a4992df13119b85e10-1660283063-0
@@ -117,6 +132,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-a9568988b34c37a4992df13119b85e10-2118047940-0
         - globalObjectIdString: GlobalObjectId_V1-2-a9568988b34c37a4992df13119b85e10-1001340018-0
         - globalObjectIdString: GlobalObjectId_V1-2-a9568988b34c37a4992df13119b85e10-3653627022219375018-1143620690
+        - globalObjectIdString: GlobalObjectId_V1-2-a9568988b34c37a4992df13119b85e10-344497183-0
         values:
         - colorIndex: 8
           iconNameOrGuid: 
@@ -138,5 +154,9 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
   bookmarks: []
   bookmarkedScenePaths: []

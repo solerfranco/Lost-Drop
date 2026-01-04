@@ -38,6 +38,9 @@ public class IntroTimeline : MonoBehaviour
 
     private int currentSlideIndex = 0;
 
+    private bool isLoadingNextScene = false;
+
+
     public void AdvanceSlide()
     {
         if (typewriter.isShowingText)
@@ -53,8 +56,11 @@ public class IntroTimeline : MonoBehaviour
         currentSlideIndex++;
         if (currentSlideIndex >= slides.Length)
         {
-            if(goToGameFeedback.IsPlaying)
+            if (isLoadingNextScene)
+            {
                 return;
+            }
+            isLoadingNextScene = true;
             goToGameFeedback.PlayFeedbacks();
             return;
         }
@@ -83,6 +89,9 @@ public class IntroTimeline : MonoBehaviour
     {
         switch (slideEvent.stepType)
         {
+            case SlideEvent.SlideEventType.NonWaitingClear:
+                OverlayManager.Instance.Clear(0.75f);
+                break;
             case SlideEvent.SlideEventType.Delay:
                 yield return new WaitForSeconds(slideEvent.delayDuration);
                 break;
@@ -141,7 +150,8 @@ internal class SlideEvent
         Clear,
         EnableGameObject,
         DisableGameObject,
-        Delay
+        Delay,
+        NonWaitingClear,
     }
 
     public SlideEventType stepType;

@@ -28,6 +28,7 @@ public class RecipeBookUI : MonoBehaviour
 
     [SerializeField]
     private WeaponRecipeSO selectedRecipe;
+    public WeaponRecipeSO SelectedRecipe => selectedRecipe;
 
 
     public UnityEvent OnOpened, OnClosed, OnWeaponChanged;
@@ -43,6 +44,7 @@ public class RecipeBookUI : MonoBehaviour
     {
         OnClosed?.Invoke();
 
+        OverlayManager.Instance.Clear();
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(containerTransform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InSine));
@@ -55,6 +57,7 @@ public class RecipeBookUI : MonoBehaviour
         OnOpened?.Invoke();
 
         containerTransform.gameObject.SetActive(true);
+        OverlayManager.Instance.FadeToBlack(0.7f);
 
         containerTransform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutSine);
         containerTransform.DOAnchorPosY(0, 0.25f).SetEase(Ease.OutSine);
@@ -72,7 +75,6 @@ public class RecipeBookUI : MonoBehaviour
     {
         GameObject blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(3, -7, 20), Quaternion.Euler(0,0,90));
         blueprint.transform.DOMoveY(-2.5f, 0.6f).SetEase(Ease.OutSine);
-
     }
 
     public void SelectWeaponRecipe(WeaponRecipeSO weaponRecipe)
