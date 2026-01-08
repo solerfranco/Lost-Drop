@@ -89,6 +89,12 @@ public class EndOfDayScreen : MonoBehaviour
         }
     }
 
+    public void GoToNextDay()
+    {
+        LevelManager.Instance.AdvanceToNextDay();
+        OverlayManager.Instance.Clear(0.7f);
+    }
+
     private void AnimateContainer()
     {
         Sequence sequence = DOTween.Sequence();

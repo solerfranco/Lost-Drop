@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tostada
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Tostada
-  weight: 1
+  weight: 3
   materialType: 6
   materialRarity: 0
   sprite: {fileID: -2874969491262959891, guid: 078d31932a5c06147ab53f83ac93c8ed, type: 3}

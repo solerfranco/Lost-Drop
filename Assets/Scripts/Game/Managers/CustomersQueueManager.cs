@@ -7,11 +7,16 @@ public class CustomersQueueManager : MonoBehaviour
     public static CustomersQueueManager Instance;
 
     private Customer[] _customerSlots;
+
+    public Customer CurrentCustomer => _customerSlots[0];
+    
     private bool _dayEnded = false;
     private bool _firedAfterDayEnd = false;
 
     // Event fired when the store day has ended and the last customer leaves the queue
     public event Action OnStoreClosedAndEmpty;
+
+    public Action<Customer> OnCustomerChange;
 
     [Range(1, 5)]
     [SerializeField]
@@ -115,6 +120,7 @@ public class CustomersQueueManager : MonoBehaviour
                 i = 0;
             }
         }
+        OnCustomerChange?.Invoke(CurrentCustomer);
     }
 
     public bool TryFindAvailableQueueSlot(out int availableSlotIndex)
@@ -141,6 +147,8 @@ public class CustomersQueueManager : MonoBehaviour
         }
         _customerSlots[index] = customer;
         customer.MoveToPosition(queuePositions[index].position, index == 0);
+
+        OnCustomerChange?.Invoke(CurrentCustomer);
     }
     
 

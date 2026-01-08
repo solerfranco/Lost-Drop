@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -7,9 +8,6 @@ public class Hammer : InteractableElement
     private bool isActive = false;
 
     private Vector3 initialPosition;
-
-    // [SerializeField]
-    // private AudioClip hammerHitSFX;
 
     protected override void Awake()
     {
@@ -35,19 +33,15 @@ public class Hammer : InteractableElement
         {
             if (hit.collider != null)
             {
-                if (hit.collider.TryGetComponent<WeaponBlueprint>(out var weaponAssembly))
+                if (hit.collider.TryGetComponent<PressurePlate>(out var pressurePlate))
                 {
-                    if (!weaponAssembly.ArePiecesPlaced)
+                    if (!pressurePlate.isAssigned)
                     {
                         break;
                     }
 
-                    if (weaponAssembly.Hit())
-                    {
-                        //Weapon assembly is complete
-                        isActive = false;
-                        transform.position = initialPosition;
-                    }
+                    StartCoroutine(pressurePlate.EnableMinigame());
+
                     return;
                 }
             }
@@ -55,7 +49,6 @@ public class Hammer : InteractableElement
         isActive = false;
         transform.position = initialPosition;
     }
-
 
     private Vector3 velocity;
     void Update()

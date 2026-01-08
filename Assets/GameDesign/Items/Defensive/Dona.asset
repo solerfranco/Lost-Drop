@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dona
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Dona
-  weight: 1
+  weight: 2
   materialType: 6
   materialRarity: 0
   sprite: {fileID: 1058618504275669202, guid: 078d31932a5c06147ab53f83ac93c8ed, type: 3}

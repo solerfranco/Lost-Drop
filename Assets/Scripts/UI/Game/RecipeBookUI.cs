@@ -15,10 +15,13 @@ public class RecipeBookUI : MonoBehaviour
     private Image weaponSprite;
 
     [SerializeField]
+    private PressurePlate pressurePlate;
+
+    [SerializeField]
     private SerializedDictionary<MaterialType, RecipeIngredient> ingredientsByMaterialType;
 
     [SerializeField]
-    private SerializedDictionary<Weapon, GameObject> blueprintsByWeapon;
+    private SerializedDictionary<Weapon, WeaponBlueprint> blueprintsByWeapon;
 
     [SerializeField]
     private LocalizedTextMeshPro hitsNeededTMP;
@@ -29,6 +32,9 @@ public class RecipeBookUI : MonoBehaviour
     [SerializeField]
     private WeaponRecipeSO selectedRecipe;
     public WeaponRecipeSO SelectedRecipe => selectedRecipe;
+
+    [SerializeField]
+    private UnityEvent createBlueprintEvent;
 
 
     public UnityEvent OnOpened, OnClosed, OnWeaponChanged;
@@ -73,8 +79,9 @@ public class RecipeBookUI : MonoBehaviour
 
     public void CreateBlueprint()
     {
-        GameObject blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(3, -7, 20), Quaternion.Euler(0,0,90));
-        blueprint.transform.DOMoveY(-2.5f, 0.6f).SetEase(Ease.OutSine);
+        WeaponBlueprint blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(pressurePlate.transform.position.x, -10, 20), Quaternion.Euler(0,0,90));
+        pressurePlate.AssignObject(blueprint);
+        createBlueprintEvent?.Invoke();
     }
 
     public void SelectWeaponRecipe(WeaponRecipeSO weaponRecipe)

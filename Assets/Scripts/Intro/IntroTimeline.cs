@@ -82,6 +82,7 @@ public class IntroTimeline : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("IntroWatched", 1);
         StartCoroutine(PlaySlides());
     }
 

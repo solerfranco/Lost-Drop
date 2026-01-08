@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameBoy
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: GameBoy
-  weight: 1
+  weight: 6
   materialType: 6
   materialRarity: 0
   sprite: {fileID: 8702783563441207743, guid: 078d31932a5c06147ab53f83ac93c8ed, type: 3}

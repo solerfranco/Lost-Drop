@@ -29,6 +29,7 @@ public class Customer : MonoBehaviour, IPointerDownHandler
 
     [SerializeField]
     private WeaponRequest weaponRequest;
+    public WeaponRequest WeaponRequest => weaponRequest;
 
     private float _currentPatience;
 
@@ -42,6 +43,11 @@ public class Customer : MonoBehaviour, IPointerDownHandler
         spriteRenderer.sprite = sprite;
     }
 
+    void Awake()
+    {
+        weaponRequest.RandomizeRequest();
+    }
+
     void Start()
     {
         initialPosition = transform.position;
@@ -49,8 +55,6 @@ public class Customer : MonoBehaviour, IPointerDownHandler
         entersStoreSFXPlayer.PlayFeedbacks();
 
         _currentPatience = patienceByDay[LevelManager.Instance.CurrentDay];
-
-        weaponRequest.RandomizeRequest();
 
         _deliveryUI = DeliveriesManager.Instance.CreateDeliveryWidget(_currentPatience, weaponRequest.Weapon, weaponRequest.Weight);
     }

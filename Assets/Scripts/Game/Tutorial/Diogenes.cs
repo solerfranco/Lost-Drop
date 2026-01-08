@@ -138,11 +138,14 @@ public class Diogenes : MonoBehaviour
     private IEnumerator Start()
     {
         //Check if it's the first day
-        if (LevelManager.Instance.CurrentDay != 0)
+        if (LevelManager.Instance.CurrentDay != 0 || PlayerPrefs.GetInt("TutorialCompleted", 0) == 1)
         {
             gameObject.SetActive(false);
             yield break;
         }
+
+        PlayerPrefs.SetInt("TutorialCompleted", 1);
+        PlayerPrefs.SetInt("CurrentDay", 1);
 
         //Setup
         hud.SetActive(false);
@@ -360,8 +363,8 @@ public class Diogenes : MonoBehaviour
     {
         if (weaponBlueprint == null)
             return;
-        if (!weaponBlueprint.IsBeingDragged)
-            return;
+        // if (!weaponBlueprint.IsBeingDragged)
+        //     return;
         if (!diogenesSprite.TryGetComponent<Collider2D>(out _))
             return;
 

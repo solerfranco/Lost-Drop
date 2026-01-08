@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Timon
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
   itemName: Timon
-  weight: 1
+  weight: 9
   materialType: 6
   materialRarity: 0
   sprite: {fileID: -2875945731665428263, guid: 078d31932a5c06147ab53f83ac93c8ed, type: 3}

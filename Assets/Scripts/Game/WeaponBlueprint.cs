@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class WeaponBlueprint : DraggableElement
+public class WeaponBlueprint : MonoBehaviour
 {
     private Vector3 velocity;
+
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
     [SerializeField]
     private WeaponRecipeSO weaponRecipe;
@@ -48,6 +51,12 @@ public class WeaponBlueprint : DraggableElement
     private void CheckIfReadyToBuild()
     {
         hammerIcon.gameObject.SetActive(ArePiecesPlaced);
+        weight = GetComponentsInChildren<Item>().Sum(item => item.Weight);
+    }
+
+    public void SetWeight(int newWeight)
+    {
+        weight = newWeight;
     }
 
     public bool Hit()
@@ -72,8 +81,6 @@ public class WeaponBlueprint : DraggableElement
             {
                 collider.enabled = false;
             }
-
-            weight = GetComponentsInChildren<Item>().Sum(item => item.Weight);
         }
 
         return currentHits >= weaponRecipe.HitsNeeded;
@@ -81,62 +88,74 @@ public class WeaponBlueprint : DraggableElement
 
     public bool ArePiecesPlaced => weaponFragments.All(p => p.IsPlaced);
 
-    public override void OnPointerUp(PointerEventData eventData)
-    {
-        base.OnPointerUp(eventData);
-        if (currentHits < weaponRecipe.HitsNeeded)
-        {
-            if (transform.position.y > 0)
-            {
-                transform.DOMoveY(-2.5f, 1f).SetEase(Ease.OutBounce);
-            }
-            return;
-        }
+    // public override void OnPointerUp(PointerEventData eventData)
+    // {
+    //     base.OnPointerUp(eventData);
+    //     if(!ArePiecesPlaced) return;
 
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
-        RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(worldPos, Vector2.zero);
+    //     Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
+    //     RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(worldPos, Vector2.zero);
 
-        foreach (var hit in raycastHit2Ds)
-        {
-            if (hit.collider != null)
-            {
-                if (hit.collider.TryGetComponent<Customer>(out var customer))
-                {
-                    customer.ReceiveItem(this);
-                    enabled = false;
-                    return;
-                }
-            }
-        }
+    //     foreach (var hit in raycastHit2Ds)
+    //     {
+    //         if (hit.collider != null)
+    //         {
+    //             if (hit.collider.TryGetComponent<Customer>(out var customer))
+    //             {
+    //                 if (currentHits < weaponRecipe.HitsNeeded)
+    //                 {
+    //                     if (transform.position.y > 0)
+    //                     {
+    //                         transform.DOMoveY(-2.5f, 1f).SetEase(Ease.OutBounce);
+    //                     }
+    //                     return;
+    //                 }
 
-        if (transform.position.y > 0)
-        {
-            transform.DOMoveY(-2.5f, 1f).SetEase(Ease.OutBounce);
-        }
-        else
-        {
-            transform.DOMove(worldPos, 0.25f).SetEase(Ease.OutQuad);
-        }
-    }
+    //                 customer.ReceiveItem(this);
+    //                 enabled = false;
+    //                 return;
+    //             }
+    //             if (hit.collider.TryGetComponent<PressurePlate>(out var pressurePlate))
+    //             {
+    //                 if(pressurePlate.isAssigned) return;
+    //                 pressurePlate.AssignObject(this);
+    //                 foreach (var collider in GetComponentsInChildren<Collider2D>())
+    //                 {
+    //                     collider.enabled = false;
+    //                 }
+    //                 return;
+    //             }
+    //         }
+    //     }
 
-    public override void OnPointerDown(PointerEventData eventData)
-    {
-        base.OnPointerDown(eventData);
-    }
+    //     if (transform.position.y > 0)
+    //     {
+    //         transform.DOMoveY(-2.5f, 1f).SetEase(Ease.OutBounce);
+    //     }
+    //     else
+    //     {
+    //         transform.DOMove(worldPos, 0.25f).SetEase(Ease.OutQuad);
+    //     }
+    // }
 
-    void Update()
-    {
-        if (isBeingDragged)
-        {
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
-            worldPos.z = 0;
+    // public override void OnPointerDown(PointerEventData eventData)
+    // {
+    //     base.OnPointerDown(eventData);
+    // }
 
-            transform.position = Vector3.SmoothDamp(transform.position, worldPos + dragOffset, ref velocity, 0.1f);
-        }
-        else
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 20 + transform.position.y);
-        }
-    }
+    // void Update()
+    // {
+    //     if (isBeingDragged)
+    //     {
+    //         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Pointer.current.position.ReadValue());
+    //         worldPos.z = 0;
+
+    //         transform.position = Vector3.SmoothDamp(transform.position, worldPos + dragOffset, ref velocity, 0.1f);
+    //     }
+    //     else
+    //     {
+    //         transform.position = new Vector3(transform.position.x, transform.position.y, 20 + transform.position.y);
+    //     }
+    // }
 }
 

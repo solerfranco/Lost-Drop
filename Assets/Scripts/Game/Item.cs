@@ -153,7 +153,7 @@ public class Item : DraggableElement
     {
         RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(pointerWorldPosition, Vector2.zero);
 
-        bool droppedOnWrongFragment = false;
+        bool droppedOnInvalidLocation = false;
         foreach (var hit in raycastHit2Ds)
         {
             if (hit.collider != null)
@@ -175,12 +175,15 @@ public class Item : DraggableElement
                     }
                     else
                     {
-                        droppedOnWrongFragment = true;
+                        droppedOnInvalidLocation = true;
                     }
+                }
+                if (hit.collider.TryGetComponent<PressurePlate>(out var pressurePlate)){
+                    droppedOnInvalidLocation = true;
                 }
             }
         }
-        if (droppedOnWrongFragment)
+        if (droppedOnInvalidLocation)
         {
             transform.DOMove(transform.position + Vector3.left * UnityEngine.Random.Range(2f, 4f), 0.25f).SetEase(Ease.OutQuad);
             return true;
