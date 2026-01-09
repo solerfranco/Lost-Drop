@@ -104,10 +104,10 @@ public class Customer : MonoBehaviour, IPointerDownHandler
         };
     }
 
-    public bool ReceiveItem(WeaponBlueprint weaponBlueprint)
+    public bool ReceiveItem(FinishedWeapon finishedWeapon)
     {
-        bool isRightWeapon = weaponBlueprint.Weapon == weaponRequest.Weapon;
-        bool isRightweight = weaponBlueprint.Weight == weaponRequest.Weight;
+        bool isRightWeapon = finishedWeapon.Weapon == weaponRequest.Weapon;
+        bool isRightweight = finishedWeapon.Weight == weaponRequest.Weight;
 
         float goldMultiplier = 1;
 
@@ -115,10 +115,10 @@ public class Customer : MonoBehaviour, IPointerDownHandler
         {
             LevelManager.Instance.AddDelivery(isRightweight, isRightWeapon);
 
-            weaponBlueprint.transform.SetParent(transform);
-            weaponBlueprint.transform.position = weaponHoldingTransform.position;
+            finishedWeapon.transform.SetParent(transform);
+            finishedWeapon.transform.position = weaponHoldingTransform.position;
 
-            SortingGroup blueprintGroup = weaponBlueprint.GetComponentInChildren<SortingGroup>();
+            SortingGroup blueprintGroup = finishedWeapon.GetComponentInChildren<SortingGroup>();
             blueprintGroup.sortingLayerID = spriteRenderer.sortingLayerID;
             blueprintGroup.sortingOrder = spriteRenderer.sortingOrder + 1;
 

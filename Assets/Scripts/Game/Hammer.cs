@@ -41,11 +41,18 @@ public class Hammer : InteractableElement
                     }
 
                     StartCoroutine(pressurePlate.EnableMinigame());
+                    Reset();
+
 
                     return;
                 }
             }
         }
+        Reset();
+    }
+
+    private void Reset()
+    {
         isActive = false;
         transform.position = initialPosition;
     }

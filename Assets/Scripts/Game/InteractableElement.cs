@@ -33,7 +33,7 @@ public class InteractableElement : MonoBehaviour, IPointerDownHandler, IPointerU
         spriteRenderer.SetPropertyBlock(materialPropertyBlock);
     }
 
-    protected void DisableOutline()
+    public void DisableOutline()
     {
         spriteRenderer.GetPropertyBlock(materialPropertyBlock);
         materialPropertyBlock.SetFloat("_OutlineAlpha", 0);

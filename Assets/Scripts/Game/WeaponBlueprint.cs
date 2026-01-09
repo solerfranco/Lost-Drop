@@ -1,22 +1,23 @@
+using System;
 using System.Linq;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class WeaponBlueprint : MonoBehaviour
 {
     private Vector3 velocity;
 
     [SerializeField]
+    private WeaponRecipeSO weaponRecipe;
+
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
-    private WeaponRecipeSO weaponRecipe;
+    private FinishedWeapon finishedWeaponPrefab;
 
     public Weapon Weapon => weaponRecipe.Weapon;
-
-    private int currentHits = 0;
     private int weight;
     public int Weight => weight;
 
@@ -31,6 +32,8 @@ public class WeaponBlueprint : MonoBehaviour
 
     private bool isWeaponFinished = false;
     public bool IsWeaponFinished => isWeaponFinished;
+
+    public Action<int> OnWeightChanged;
 
     void Start()
     {
@@ -52,46 +55,46 @@ public class WeaponBlueprint : MonoBehaviour
     {
         hammerIcon.gameObject.SetActive(ArePiecesPlaced);
         weight = GetComponentsInChildren<Item>().Sum(item => item.Weight);
+        OnWeightChanged?.Invoke(weight);
     }
 
     public void SetWeight(int newWeight)
     {
         weight = newWeight;
+        OnWeightChanged?.Invoke(weight);
     }
 
-    public bool Hit()
+    public void FinishWeapon()
     {
-        //Check if all pieces are placed
-        if (!ArePiecesPlaced) return false;
-
-        // ScreenShake.Instance.TriggerShake(0.5f);
-
-        currentHits++;
-        dustParticleSystem.Play();
-        if (currentHits >= weaponRecipe.HitsNeeded)
+        // dustParticleSystem.Play();
+        FinishedWeapon finishedWeapon = Instantiate(finishedWeaponPrefab, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity, null);
+        finishedWeapon.Initialize(Weapon, Weight);
+        
+        foreach (WeaponFragment fragment in weaponFragments)
         {
-
-            // Disable all child colliders
-
-            weaponOutline.enabled = false;
-            spriteRenderer.transform.DOScale(Vector3.zero, 0.3f);
-            isWeaponFinished = true;
-
-            foreach (var collider in GetComponentsInChildren<Collider2D>().Skip(1))
-            {
-                collider.enabled = false;
-            }
+            fragment.transform.SetParent(finishedWeapon.transform);
+            fragment.transform.position = new (fragment.transform.position.x, fragment.transform.position.y, 0);
         }
 
-        return currentHits >= weaponRecipe.HitsNeeded;
+        Destroy(gameObject);
     }
 
     public bool ArePiecesPlaced => weaponFragments.All(p => p.IsPlaced);
 
+    public void Reset()
+    {
+        foreach (WeaponFragment fragment in weaponFragments)
+        {
+            if(!fragment.IsPlaced) continue;
+            Transform item = fragment.transform.GetChild(0);
+            item.SetParent(null);
+            item.DOMove(item.transform.position + Vector3.left * UnityEngine.Random.Range(4f, 6f), 0.25f).SetEase(Ease.OutQuad);
+        }
+    }
+
     // public override void OnPointerUp(PointerEventData eventData)
     // {
     //     base.OnPointerUp(eventData);
-    //     if(!ArePiecesPlaced) return;
 
     //     Vector2 worldPos = Camera.main.ScreenToWorldPoint(eventData.position);
     //     RaycastHit2D[] raycastHit2Ds = Physics2D.RaycastAll(worldPos, Vector2.zero);
@@ -102,27 +105,8 @@ public class WeaponBlueprint : MonoBehaviour
     //         {
     //             if (hit.collider.TryGetComponent<Customer>(out var customer))
     //             {
-    //                 if (currentHits < weaponRecipe.HitsNeeded)
-    //                 {
-    //                     if (transform.position.y > 0)
-    //                     {
-    //                         transform.DOMoveY(-2.5f, 1f).SetEase(Ease.OutBounce);
-    //                     }
-    //                     return;
-    //                 }
-
     //                 customer.ReceiveItem(this);
     //                 enabled = false;
-    //                 return;
-    //             }
-    //             if (hit.collider.TryGetComponent<PressurePlate>(out var pressurePlate))
-    //             {
-    //                 if(pressurePlate.isAssigned) return;
-    //                 pressurePlate.AssignObject(this);
-    //                 foreach (var collider in GetComponentsInChildren<Collider2D>())
-    //                 {
-    //                     collider.enabled = false;
-    //                 }
     //                 return;
     //             }
     //         }

@@ -41,19 +41,40 @@ public class PressurePlate : SerializedMonoBehaviour
 
     public void AssignObject(WeaponBlueprint obj)
     {
+        if(assignedBlueprint) ReleaseObject();
+
         assignedBlueprint = obj;
         OnPlatePressed?.Invoke();
 
-        
-        weightScaleDial.SetWeight(assignedBlueprint.Weight);
+        obj.OnWeightChanged += OnWeightChanged;
+
 
         assignedBlueprint.transform.DOMove(transform.position, 0.75f).SetEase(Ease.OutBack);
     }
 
+    private void OnWeightChanged(int weight)
+    {
+        if(idealWeight == weight)
+        {
+            assignedBlueprint.OnWeightChanged -= OnWeightChanged;
+            assignedBlueprint.FinishWeapon();
+            assignedBlueprint = null;
+            OnPlateReleased?.Invoke();
+            weightScaleDial.SetWeight(0);
+
+            return;
+        }
+
+        weightScaleDial.SetWeight(weight);
+    }
+
     public void ReleaseObject()
     {
-        OnPlateReleased?.Invoke();
+        assignedBlueprint.Reset();
+        Destroy(assignedBlueprint.gameObject);
         assignedBlueprint = null;
+        
+        OnPlateReleased?.Invoke();
         weightScaleDial.SetWeight(0);
     }
 
@@ -74,11 +95,11 @@ public class PressurePlate : SerializedMonoBehaviour
     {
         countdownGameobject.SetActive(true);
         countdownTMP.text = "3";
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         countdownTMP.text = "2";
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         countdownTMP.text = "1";
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         countdownGameobject.SetActive(false);
     }
 
@@ -89,8 +110,6 @@ public class PressurePlate : SerializedMonoBehaviour
             starBurstVFX.SetTrigger("Burst");
             int currentWeight = assignedBlueprint.Weight;
             int newWeight = currentWeight > idealWeight ? currentWeight - 1 : currentWeight + 1;
-            assignedBlueprint.SetWeight(newWeight);
-            weightScaleDial.SetWeight(newWeight);
 
             if(newWeight == idealWeight)
             {
@@ -100,6 +119,8 @@ public class PressurePlate : SerializedMonoBehaviour
             {
                 minigamesByWeapon[assignedBlueprint.Weapon].ResetAndRestart();
             }
+            assignedBlueprint.SetWeight(newWeight);
+            weightScaleDial.SetWeight(newWeight);
         }
     }
 

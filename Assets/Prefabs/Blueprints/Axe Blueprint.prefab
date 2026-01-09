@@ -5720,21 +5720,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ff7ad54edf2e44592faa9b40670ab6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponBlueprint
-  spriteRenderer: {fileID: 8613962741231940539}
-  onPointerDown:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  onPointerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  isBeingDragged: 0
   weaponRecipe: {fileID: 11400000, guid: f08e87081a0e8b94494b1d3ac087a270, type: 2}
+  spriteRenderer: {fileID: 8613962741231940539}
+  finishedWeaponPrefab: {fileID: -5763187626151199778, guid: 2e36a68396f6dff40b2b0bb4699a39c2, type: 3}
   weaponFragments:
   - {fileID: 7438761424474368553}
   - {fileID: 5242166867630630279}

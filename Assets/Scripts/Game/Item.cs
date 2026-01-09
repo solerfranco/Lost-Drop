@@ -24,6 +24,7 @@ public class Item : DraggableElement
 
     [SerializeField] private Transform sprite;
     [SerializeField] private ItemTooltip tooltip;
+    public ItemTooltip Tooltip => tooltip;
     [SerializeField] private TextMeshProUGUI weightTMP;
     [SerializeField] private TextMeshProUGUI itemTMP;
     [SerializeField] private Image itemTypeImage;
@@ -167,7 +168,7 @@ public class Item : DraggableElement
                 {
                     if (weaponPiece.CanPlaceItem(this))
                     {
-                        transform.SetParent(weaponPiece.transform);
+                        weaponPiece.PlaceItem(this);
                         transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutQuad);
                         transform.DOLocalMove(Vector3.zero + Vector3.forward * weaponPiece.transform.position.z, 0.25f).SetEase(Ease.OutQuad);
                         sprite.DOLocalRotate(Vector3.forward * weaponPiece.transform.rotation.eulerAngles.z, 0.25f).SetEase(Ease.OutQuad);
@@ -185,7 +186,7 @@ public class Item : DraggableElement
         }
         if (droppedOnInvalidLocation)
         {
-            transform.DOMove(transform.position + Vector3.left * UnityEngine.Random.Range(2f, 4f), 0.25f).SetEase(Ease.OutQuad);
+            transform.DOMove(transform.position + Vector3.left * UnityEngine.Random.Range(4f, 6f), 0.25f).SetEase(Ease.OutQuad);
             return true;
         }
         return false;
@@ -194,7 +195,9 @@ public class Item : DraggableElement
     public void DisableCollider()
     {
         if (activeCollider != null)
+        {
             activeCollider.enabled = false;
+        }
     }
 
     public void EnableCollider()

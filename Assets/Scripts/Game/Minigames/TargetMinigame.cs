@@ -32,14 +32,10 @@ public class TargetMinigame : Minigame
 
     private int targetsHit;
 
-    private void Awake()
+    void OnEnable()
     {
         inputAction.Enable();
         inputAction.performed += CheckHit;
-    }
-
-    void OnEnable()
-    {
         Reset();
         StartCoroutine(Play());
     }
