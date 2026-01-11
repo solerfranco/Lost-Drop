@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: weaponRecipe
       value: 
       objectReference: {fileID: 11400000, guid: 19c606b4e5ce17d44974b2fcfec9a91c, type: 2}
+    - target: {fileID: 5299517569136893483, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.492
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299517569136893483, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.449
+      objectReference: {fileID: 0}
     - target: {fileID: 5524851170960253263, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escudo
       objectReference: {fileID: 0}
+    - target: {fileID: 5299517569136893483, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299517569136893483, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.466
+      objectReference: {fileID: 0}
     - target: {fileID: 5524851170960253263, guid: 40e85e5077c9a8a4d90156ef2de28756, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

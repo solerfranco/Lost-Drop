@@ -15,6 +15,10 @@ public class WeaponBlueprint : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
+    private PriceTag priceTag;
+    public PriceTag PriceTag => priceTag;
+
+    [SerializeField]
     private FinishedWeapon finishedWeaponPrefab;
 
     public Weapon Weapon => weaponRecipe.Weapon;
@@ -56,12 +60,26 @@ public class WeaponBlueprint : MonoBehaviour
         hammerIcon.gameObject.SetActive(ArePiecesPlaced);
         weight = GetComponentsInChildren<Item>().Sum(item => item.Weight);
         OnWeightChanged?.Invoke(weight);
+
+        if(weight > 0)
+        {
+            PriceTag.Show();
+        }
+        else
+        {
+            PriceTag.Hide();
+        }
     }
 
     public void SetWeight(int newWeight)
     {
         weight = newWeight;
         OnWeightChanged?.Invoke(weight);
+
+        if(weight <= 0)
+        {
+            PriceTag.Hide();
+        }
     }
 
     public void FinishWeapon()
@@ -90,6 +108,7 @@ public class WeaponBlueprint : MonoBehaviour
             item.SetParent(null);
             item.DOMove(item.transform.position + Vector3.left * UnityEngine.Random.Range(4f, 6f), 0.25f).SetEase(Ease.OutQuad);
         }
+        PriceTag.Hide();
     }
 
     // public override void OnPointerUp(PointerEventData eventData)

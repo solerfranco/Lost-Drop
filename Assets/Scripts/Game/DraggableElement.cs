@@ -43,4 +43,10 @@ public class DraggableElement : InteractableElement
             DisableOutline();
         }
     }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        if(isBeingDragged) EnableOutline();
+    }
 }

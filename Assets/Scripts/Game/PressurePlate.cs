@@ -121,6 +121,7 @@ public class PressurePlate : SerializedMonoBehaviour
             }
             assignedBlueprint.SetWeight(newWeight);
             weightScaleDial.SetWeight(newWeight);
+            assignedBlueprint.PriceTag.Upgrade(20);
         }
     }
 

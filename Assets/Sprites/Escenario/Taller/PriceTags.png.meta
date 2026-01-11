@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: dd5097c5a563ac041bb35a618d55f8ec
+guid: af8a3fcfc850e414cbbbc53dd4bc0fec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 772873091159672683
-    second: Placa de Presion_0
+      213: -5045754322138788239
+    second: PriceTags_0
+  - first:
+      213: 249755432131050818
+    second: PriceTags_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +49,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Placa de Presion_0
+      name: PriceTags_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 318
-        height: 264
+        x: 63
+        y: 96
+        width: 678
+        height: 529
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b67c7074bfbc9ba00800000000000000
-      internalID: 772873091159672683
+      spriteID: 17e86057d21e9f9b0800000000000000
+      internalID: -5045754322138788239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PriceTags_1
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 82
+        width: 669
+        height: 525
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d35e40e3f477300800000000000000
+      internalID: 249755432131050818
       vertices: []
       indices: 
       edges: []
@@ -138,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Placa de Presion_0: 772873091159672683
+      PriceTags_0: -5045754322138788239
+      PriceTags_1: 249755432131050818
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

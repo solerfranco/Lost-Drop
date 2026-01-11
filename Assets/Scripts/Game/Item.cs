@@ -107,6 +107,7 @@ public class Item : DraggableElement
         sprite.DOScale(initialScale * 1.3f, 0.5f).SetEase(Ease.OutBack);
         transform.SetParent(null);
         transform.position = new(transform.position.x, transform.position.y, -5);
+        tooltip.Close();
     }
 
     public override void OnPointerUp(PointerEventData eventData)
@@ -140,7 +141,7 @@ public class Item : DraggableElement
     public override void OnPointerEnter(PointerEventData eventData)
     {
         base.OnPointerEnter(eventData);
-        tooltip.Open();
+        if(!isBeingDragged) tooltip.Open();
     }
 
     public override void OnPointerExit(PointerEventData eventData)
