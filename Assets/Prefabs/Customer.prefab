@@ -1782,6 +1782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3061875394044678565}
+  - component: {fileID: 7910437713303900876}
   m_Layer: 0
   m_Name: Performance Indicator
   m_TagString: Untagged
@@ -1806,6 +1807,18 @@ Transform:
   - {fileID: 4925121527702670622}
   m_Father: {fileID: 6730040154289826715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7910437713303900876
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5732347758093564993}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &6461597818183489218
 GameObject:
   m_ObjectHideFlags: 0

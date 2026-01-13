@@ -79,7 +79,7 @@ public class RecipeBookUI : MonoBehaviour
 
     public void CreateBlueprint()
     {
-        WeaponBlueprint blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(pressurePlate.transform.position.x, -10, 20), Quaternion.Euler(0,0,90));
+        WeaponBlueprint blueprint = Instantiate(blueprintsByWeapon[selectedRecipe.Weapon], new Vector3(pressurePlate.transform.position.x - 1, -10, 20), Quaternion.identity);
         pressurePlate.AssignObject(blueprint);
         createBlueprintEvent?.Invoke();
     }

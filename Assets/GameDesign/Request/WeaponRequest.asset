@@ -16,23 +16,23 @@ MonoBehaviour:
     _serializedList:
     - Key: 0
       Value:
-        MinWeight: 9
-        MaxWeight: 11
+        MinWeight: 1
+        MaxWeight: 10
     - Key: 1
       Value:
-        MinWeight: 3
-        MaxWeight: 5
+        MinWeight: 1
+        MaxWeight: 10
     - Key: 2
       Value:
-        MinWeight: 10
-        MaxWeight: 15
+        MinWeight: 1
+        MaxWeight: 10
     - Key: 3
       Value:
-        MinWeight: 4
-        MaxWeight: 7
+        MinWeight: 1
+        MaxWeight: 10
     - Key: 4
       Value:
-        MinWeight: 5
+        MinWeight: 1
         MaxWeight: 10
   WeaponsByDay:
     _serializedList:

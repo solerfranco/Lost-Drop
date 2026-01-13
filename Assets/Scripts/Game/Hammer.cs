@@ -55,6 +55,7 @@ public class Hammer : InteractableElement
     {
         isActive = false;
         transform.position = initialPosition;
+        DisableOutline();
     }
 
     private Vector3 velocity;
@@ -68,5 +69,11 @@ public class Hammer : InteractableElement
             worldPosition.z = -5;
             transform.position = Vector3.SmoothDamp(transform.position, worldPosition, ref velocity, 0.05f);
         }
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        if(isActive) EnableOutline();
     }
 }

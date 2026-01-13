@@ -94,6 +94,11 @@ public class WeaponBlueprint : MonoBehaviour
             fragment.transform.position = new (fragment.transform.position.x, fragment.transform.position.y, 0);
         }
 
+        CustomersQueueManager.Instance.CurrentCustomer.ReceiveItem(finishedWeapon);
+
+        PressurePlate.Instance.CameraZoomOut();
+        PressurePlate.Instance.DisableMinigame();
+
         Destroy(gameObject);
     }
 

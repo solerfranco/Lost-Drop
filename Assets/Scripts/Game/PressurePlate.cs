@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 public class PressurePlate : SerializedMonoBehaviour
 {
+    public static PressurePlate Instance;
 
     [SerializeField]
     private Camera mainCamera;
@@ -30,14 +31,27 @@ public class PressurePlate : SerializedMonoBehaviour
     [SerializeField]
     private WeightScaleDial weightScaleDial;
 
-    [SerializeField]
-    private Transform indicator;
-
     private WeaponBlueprint assignedBlueprint;
+
+    [SerializeField]
+    private Transform blueprintSpawnPoint;
 
     private int idealWeight;
 
     public bool isAssigned => assignedBlueprint != null;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     public void AssignObject(WeaponBlueprint obj)
     {
@@ -49,7 +63,7 @@ public class PressurePlate : SerializedMonoBehaviour
         obj.OnWeightChanged += OnWeightChanged;
 
 
-        assignedBlueprint.transform.DOMove(transform.position, 0.75f).SetEase(Ease.OutBack);
+        assignedBlueprint.transform.DOMove(blueprintSpawnPoint.position, 0.75f).SetEase(Ease.OutBack);
     }
 
     private void OnWeightChanged(int weight)
@@ -57,8 +71,8 @@ public class PressurePlate : SerializedMonoBehaviour
         if(idealWeight == weight)
         {
             assignedBlueprint.OnWeightChanged -= OnWeightChanged;
-            assignedBlueprint.FinishWeapon();
-            assignedBlueprint = null;
+            // assignedBlueprint.FinishWeapon();
+            // assignedBlueprint = null;
             OnPlateReleased?.Invoke();
             weightScaleDial.SetWeight(0);
 
@@ -121,17 +135,18 @@ public class PressurePlate : SerializedMonoBehaviour
             }
             assignedBlueprint.SetWeight(newWeight);
             weightScaleDial.SetWeight(newWeight);
-            assignedBlueprint.PriceTag.Upgrade(20);
+            
+            assignedBlueprint.PriceTag.Upgrade(20, newWeight == idealWeight);
         }
     }
 
-    private void DisableMinigame()
+    public void DisableMinigame()
     {
         if(assignedBlueprint == null) return;
 
         minigamesByWeapon[assignedBlueprint.Weapon].OnGameFinished -= OnMinigameFinished;
         minigamesByWeapon[assignedBlueprint.Weapon].gameObject.SetActive(false);
-        CameraZoomOut();
+        // CameraZoomOut();
     }
 
     private void OnEnable()
@@ -146,16 +161,8 @@ public class PressurePlate : SerializedMonoBehaviour
 
     private void OnCustomerChange(Customer customer)
     {
-        SetIdealWeight(customer.WeaponRequest.Weight);
-    }
-
-    public void SetIdealWeight(float weight)
-    {
-        float indicatorAngle = Mathf.Lerp(0, -180, weight / 10);
-
-        indicator.DOLocalRotate(new Vector3(0, 0, indicatorAngle), 0.4f).SetEase(Ease.OutBack);
-
-        idealWeight = (int)weight;
+        idealWeight = customer.WeaponRequest.Weight;
+        weightScaleDial.SetIdealWeight(customer.WeaponRequest.Weight);
     }
     
     private void CameraZoomIn()
@@ -164,7 +171,7 @@ public class PressurePlate : SerializedMonoBehaviour
         mainCamera.transform.DOLocalMove(new Vector3(3.5f, -2f, mainCamera.transform.localPosition.z), 0.5f).SetEase(Ease.OutQuad);
     }
 
-    private void CameraZoomOut()
+    public void CameraZoomOut()
     {
         mainCamera.DOOrthoSize(5.2f, 0.5f).SetEase(Ease.OutBack);
         mainCamera.transform.DOLocalMove(new Vector3(0, 0, mainCamera.transform.localPosition.z), 0.5f).SetEase(Ease.OutQuad);

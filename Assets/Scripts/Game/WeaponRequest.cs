@@ -43,7 +43,7 @@ public class WeaponRequest : MonoBehaviour
 
         _weight = Random.Range(weaponRequestData.WeightByWeapon[_weapon].MinWeight, weaponRequestData.WeightByWeapon[_weapon].MaxWeight + 1);
 
-        weightTMP.text = $"{_weight}\U0001F60A";
+        weightTMP.text = $"{WeightConversionTable.GetWeaponWeightIcon(_weight)}\U0001F60A";
 
         weaponImage.sprite = weaponRequestData.WeaponSprites[_weapon];
     }

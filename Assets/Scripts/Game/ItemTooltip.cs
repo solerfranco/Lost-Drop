@@ -29,7 +29,7 @@ public class ItemTooltip : MonoBehaviour
     {
         background.sprite = backgroundByRarity[item.MaterialRarity];
         typeTMP.LocalizationKey = descriptionByType[item.MaterialType];
-        weightTMP.text = $"<size=30><sprite=0></size>{item.Weight}";
+        weightTMP.text = $"<size=30><sprite=0></size>{WeightConversionTable.GetWeaponWeightIcon(item.Weight)}";
     }
 
     public void Open()
