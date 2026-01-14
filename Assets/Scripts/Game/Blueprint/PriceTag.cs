@@ -32,7 +32,6 @@ public class PriceTag : SerializedMonoBehaviour
     {
         mMF_Player.Initialization();
         Reset();
-        Show();
     }
 
     private void Reset()
@@ -42,7 +41,7 @@ public class PriceTag : SerializedMonoBehaviour
         priceTMP.color = c;
 
         tagRenderer.color = Color.clear;
-        tagRenderer.transform.localEulerAngles = Vector3.forward * -10;
+        tagRenderer.transform.localEulerAngles = Vector3.forward * 20;
         ropeStrings.ForEach(el =>
         {
             el.color = Color.clear;

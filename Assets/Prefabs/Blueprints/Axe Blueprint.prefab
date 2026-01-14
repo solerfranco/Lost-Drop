@@ -6015,7 +6015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3458582001235454788}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.17364816, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
   m_LocalPosition: {x: -0.0075, y: -0.0155, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6025,7 +6025,7 @@ Transform:
   - {fileID: 1909561180240220916}
   - {fileID: 3637678143207688021}
   m_Father: {fileID: 4582764791740753479}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10}
 --- !u!212 &1990713435257954217
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6072,7 +6072,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -6983083506265018741, guid: b5ee5a7ddbb493d478d8243c9aba8ff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6237,6 +6237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5299517569136893483}
   - component: {fileID: 2059865040168343929}
+  - component: {fileID: 1238805900798005653}
   m_Layer: 0
   m_Name: PriceTag
   m_TagString: Untagged
@@ -6336,6 +6337,18 @@ MonoBehaviour:
   - {fileID: 5676016877170647811}
   priceTMP: {fileID: 2977759038618785450}
   mMF_Player: {fileID: 3998148189873833918}
+--- !u!210 &1238805900798005653
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4411462099612186378}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 1
 --- !u!1 &4613673782142835939
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,6 +6359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5787945501810448481}
   - component: {fileID: 7402472504737598133}
+  - component: {fileID: 899648267520267999}
   m_Layer: 0
   m_Name: String (1)
   m_TagString: Untagged
@@ -6426,6 +6440,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &899648267520267999
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613673782142835939}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -7
+  m_SortAtRoot: 1
 --- !u!1 &4995800176790994682
 GameObject:
   m_ObjectHideFlags: 0
@@ -6671,7 +6697,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: -2998972116037023803, guid: b5ee5a7ddbb493d478d8243c9aba8ff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11720,7 +11746,7 @@ MeshRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2977759038618785450
 MonoBehaviour:

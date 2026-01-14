@@ -10,7 +10,19 @@ public class WeightScaleDial : MonoBehaviour
     [SerializeField]
     private Transform indicator;
 
+    [SerializeField]
+    private Transform dialContainer;
+
     private float currentWeight;
+    public float CurrentWeight
+    {
+        get => currentWeight;
+        set
+        {
+            ToggleDialPosition(value != 0);
+            currentWeight = value;
+        } 
+    }
 
     public void SetWeight(float weight)
     {
@@ -18,7 +30,7 @@ public class WeightScaleDial : MonoBehaviour
 
         needle.DOLocalRotate(new Vector3(0, 0, needleAngle), 0.4f).SetEase(Ease.OutBack);
 
-        currentWeight = weight;
+        CurrentWeight = weight;
     }
 
     public void SetIdealWeight(float weight)
@@ -26,5 +38,21 @@ public class WeightScaleDial : MonoBehaviour
         float indicatorAngle = Mathf.Lerp(-12, -172, weight / 10);
 
         indicator.DOLocalRotate(new Vector3(0, 0, indicatorAngle), 0.4f).SetEase(Ease.OutBack);
+    }
+
+    public void ToggleDialPosition(bool isActive)
+    {
+        if(isActive && dialContainer.localPosition.y > 2) return;
+        if(!isActive && dialContainer.localPosition.y < 1.5f) return;
+
+        dialContainer.DOKill();
+        if (isActive)
+        {
+            dialContainer.DOLocalMoveY(2.75f, 0.2f).SetEase(Ease.OutQuad);
+        }
+        else
+        {
+            dialContainer.DOLocalMoveY(0.6f, 0.2f).SetEase(Ease.InQuad);
+        }
     }
 }
