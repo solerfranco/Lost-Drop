@@ -15,6 +15,10 @@ public class PressurePlate : SerializedMonoBehaviour
     private Camera mainCamera;
     [SerializeField]
     private Animator starBurstVFX;
+
+    [SerializeField]
+    private ParticleSystem gameLostVFX;
+    
     [SerializeField]
     private UnityEvent OnPlatePressed;
     [SerializeField]
@@ -137,6 +141,16 @@ public class PressurePlate : SerializedMonoBehaviour
             weightScaleDial.SetWeight(newWeight);
             
             assignedBlueprint.PriceTag.Upgrade(20, newWeight == idealWeight);
+        }
+        else
+        { 
+            gameLostVFX.Play();
+            int currentWeight = assignedBlueprint.Weight;
+            int newWeight = currentWeight > idealWeight ? currentWeight + 1 : currentWeight - 1;
+            newWeight = Mathf.Clamp(newWeight, 1, 10);
+            minigamesByWeapon[assignedBlueprint.Weapon].ResetAndRestart();
+            assignedBlueprint.SetWeight(newWeight);
+            weightScaleDial.SetWeight(newWeight);
         }
     }
 

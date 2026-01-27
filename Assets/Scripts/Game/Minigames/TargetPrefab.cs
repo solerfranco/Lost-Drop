@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class TargetPrefab : MonoBehaviour
 {
+    // Callback when target is destroyed without being hit correctly
+    public static System.Action OnTargetMissed;
+    
     [SerializeField]
     private float initialOuterScale = 2f;
 
@@ -66,6 +69,11 @@ public class TargetPrefab : MonoBehaviour
         {
             spriteRenderer.transform.DOScale(Vector3.zero, 0.2f).OnComplete(() =>
             {
+               // Target was not hit in time - trigger miss
+               if (!hasBeenHit)
+               {
+                   OnTargetMissed?.Invoke();
+               }
                Destroy(gameObject); 
             });
         }

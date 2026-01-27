@@ -35,7 +35,7 @@ public class WeightScaleDial : MonoBehaviour
 
     public void SetIdealWeight(float weight)
     {
-        float indicatorAngle = Mathf.Lerp(-12, -172, weight / 10);
+        float indicatorAngle = Mathf.Lerp(-11.5f, -173.5f, weight / 10);
 
         indicator.DOLocalRotate(new Vector3(0, 0, indicatorAngle), 0.4f).SetEase(Ease.OutBack);
     }

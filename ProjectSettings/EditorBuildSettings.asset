@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 8e9c01331b6804c4597aee2f83682287
   - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: 27a36d188b3e45847a81fad59e5d2c35
+  - enabled: 1
     path: Assets/Feel/MMTools/Core/MMSceneLoading/LoadingScreens/MMAdditiveLoadingScreenSimple.unity
     guid: 945e5b97212e8e74ebcd35bddde3970c
+  - enabled: 1
+    path: Assets/Feel/MMTools/Core/MMSceneLoading/LoadingScreens/CurtainAdditiveLoadingScreen.unity
+    guid: a945986850d98914fb7b543eb4861ad6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

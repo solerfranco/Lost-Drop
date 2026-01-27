@@ -6,10 +6,12 @@ public class Minigame : MonoBehaviour
 {
     public Action<bool> OnGameFinished;
 
+    protected Coroutine playCoroutine;
+
     public virtual void ResetAndRestart()
     {
         Reset();
-        StartCoroutine(Play());
+        playCoroutine = StartCoroutine(Play());
     }
 
     public virtual void Reset()
